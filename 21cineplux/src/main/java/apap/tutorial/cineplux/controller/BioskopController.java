@@ -5,6 +5,7 @@ import apap.tutorial.cineplux.service.BioskopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,6 +93,30 @@ public class BioskopController {
         return "update-jumlahStudio";
 
     }
+
+
+    @RequestMapping ("/bioskop/delete/id-bioskop/{idBioskop}")
+    public String deleteBioskopController(
+            @PathVariable(value="idBioskop", required=true) String idBioskop,
+            Model model
+    ){
+        //Mendapatkan bioskop sesuai dengan idBioskop
+        BioskopModel bioskopModel3 = bioskopService.getBioskopByIdBioskop(idBioskop);
+
+        //Add variable BioskopModel ke 'bioskop' untuk dirender dalam thymeleaf
+        model.addAttribute("bioskop", bioskopModel3);
+
+        //menghapus bioskop
+        if(bioskopModel3 != null){
+            bioskopService.deleteBioskop(bioskopModel3);
+        }
+
+        return "delete-bioskop";
+
+
+    }
+
+
 
 
 
