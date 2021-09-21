@@ -70,11 +70,14 @@ public class BioskopController {
             Model model
     ){
         //Mendapatkan bioskop sesuai dengan idBioskop
-        BioskopModel bioskopModel = bioskopService.getBioskopByIdBioskop(idBioskop);
-
+        List<BioskopModel> bioskopModel = bioskopService.challenge1(idBioskop);
+        //Mendapatkan semua bioskop
+        List<BioskopModel> listBioskop = bioskopService.getBioskopList();
+        //Add variable semua BioskopModel ke 'listBioskop' untuk dirender dalam thymeleaf
+        model.addAttribute("listBioskop", listBioskop);
         //Add variable BioskopModel ke 'bioskop' untuk dirender dalam thymeleaf
-        model.addAttribute("bioskop", bioskopModel);
-        return "view-bioskop";
+        model.addAttribute("listBioskop", bioskopModel);
+        return "viewfilter-bioskop";
     }
 
     @RequestMapping("/bioskop/update/id-bioskop/{idBioskop}/jumlah-studio/{jumlahStudio}")

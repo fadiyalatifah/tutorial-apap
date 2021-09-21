@@ -10,10 +10,12 @@ import java.util.List;
 public class BioskopInMemoryService implements BioskopService {
 
     private List<BioskopModel> listBioskop;
+    private List<BioskopModel> listBioskopfilter;
 
     //Constructor
     public BioskopInMemoryService(){
         listBioskop = new ArrayList<>();
+        listBioskopfilter = new ArrayList<>();
     }
 
     @Override
@@ -27,6 +29,11 @@ public class BioskopInMemoryService implements BioskopService {
     }
 
     @Override
+    public List<BioskopModel> getBioskopListFilter() {
+        return listBioskopfilter;
+    }
+
+    @Override
     public BioskopModel getBioskopByIdBioskop(String idBioskop) {
         for (BioskopModel bm: listBioskop){
             if (bm.getIdBioskop().equals(idBioskop)){
@@ -34,6 +41,18 @@ public class BioskopInMemoryService implements BioskopService {
             }
         }
         return null;
+
+    }
+
+    @Override
+    public List<BioskopModel> challenge1(String idBioskop) {
+        listBioskopfilter.removeAll(listBioskopfilter);
+        for (BioskopModel bm: listBioskop){
+            if (bm.getIdBioskop().equals(idBioskop)){
+                listBioskopfilter.add(bm);
+            }
+        }
+        return listBioskopfilter;
 
     }
 
