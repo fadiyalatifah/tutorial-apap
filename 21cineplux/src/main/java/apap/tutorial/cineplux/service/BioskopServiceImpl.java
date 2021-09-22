@@ -4,7 +4,7 @@ import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.repository.BioskopDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Sort;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +23,9 @@ public class BioskopServiceImpl implements BioskopService {
     public void updateBioskop(BioskopModel bioskop) { bioskopDB.save(bioskop); }
 
     @Override
-    public List<BioskopModel> getBioskopList() { return bioskopDB.findAll(); }
+    public List<BioskopModel> getBioskopList() {
+        return bioskopDB.findAll(Sort.by(Sort.Direction.ASC, "namaBioskop"));
+    }
 
     @Override
     public BioskopModel getBioskopByNoBioskop(Long noBioskop) {
