@@ -70,6 +70,19 @@ public class BioskopController {
             Model model
     ){
         //Mendapatkan bioskop sesuai dengan idBioskop
+        BioskopModel bioskopModel = bioskopService.getBioskopByIdBioskop(idBioskop);
+
+        //Add variable BioskopModel ke 'bioskop' untuk dirender dalam thymeleaf
+        model.addAttribute("bioskop", bioskopModel);
+        return "view-bioskop";
+    }
+
+    @RequestMapping("/bioskop/view/id-bioskop-filter/{idBioskop}")
+    public String challengeController(
+            @PathVariable("idBioskop") String idBioskop,
+            Model model
+    ){
+        //Mendapatkan bioskop sesuai dengan idBioskop
         List<BioskopModel> bioskopModel = bioskopService.challenge1(idBioskop);
         //Mendapatkan semua bioskop
         List<BioskopModel> listBioskop = bioskopService.getBioskopList();
