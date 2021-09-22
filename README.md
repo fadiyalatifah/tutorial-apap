@@ -1,6 +1,33 @@
 # Tutorial APAP
 ## Authors
 * **Fadiya Latifah** - *1906399442* - *C*
+
+## Tutorial 2
+### What I have learned today
+1. Pertanyaan 1: Cobalah untuk menambahkan sebuah Bioskop dengan mengakses link berikut: http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20 APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx&jumlahStudio=10 Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi?
+
+Pada saat saya menambahkan bioskop melalui link tersebut, terjadi error 500 dengan spesific error "Error resolving template[add-bioskop]". Hal ini terjadi karena pada saat itu, saya belum membuat template/halaman html add-bioskop. Sedangkan di controller saya sudah menginisiasi return "add-bioskop". Agar tidak error, kita harus membuat page htmlnya terlebih dahulu.
+
+2. Pertanyaan 2: Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam konteks service dan controller yang telah kamu buat!
+
+Setelah saya membaca beberapa referensi dari internet dan digabungkan dengan pendapat saya, menurut saya @autowired merupakan implementasi dari konsep Dependency injection. Cara kerja autowired dalam service dan controller adalah, autowired membuat spring mungkin untuk menyelesaikan & menginjeksikan bean bioskopservice ke pihak yang mengimplemennya(bioskopinmemoryservice). Sehingga pada controller, otomatis memiliki semua objek dari yang mengimplementnya. jadi controller bisa langsung mendapat service tanpa harus mengimplementasi variabel/elemen/constructor dari bioskopservice.
+
+3. Pertanyaan 3: Cobalah untuk menambahkan sebuah Bioskop dengan mengakses link berikut: http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20 APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
+
+Pada saat saya menambahkan bioskop melalui link tersebut, terjadi error 400 dengan spesifik error "required request parameter 'jumlah studio' for method parameter type is not present". Hal ini terjadi karena web di atas tidak lengkap, tidak memiliki parameter jumlahstudio. Sehingga agar tidak error, link nya harus ditambahkan jumlah studio setelah nomor teleponnya.
+
+
+4. Pertanyaan 4: Jika Papa APAP ingin melihat Bioskop dengan nama Bioskop Maung, link apa yang harus diakses?
+
+Untuk melihatnya, asumsikan saya telah membuat bioskop baru bernama Bioskop Maung dengan id 2 melalui akses link http://localhost:8080/bioskop/add?idBioskop=2&namaBioskop=Bioskop%20Maung&alamat=Jalan%20Fasilkom&noTelepon=0817676&jumlahStudio=8. Maka setelah itu, kita bisa melihatnya melalui link http://localhost:8080/bioskop/view?idBioskop=2.
+
+
+5. Pertanyaan 5: Tambahkan 1 contoh Bioskop lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/bioskop/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
+
+Setelah memiliki 2 bioskop sebelumnya, saya menambahkan lagi bioskop ber-id 3 melalui link http://localhost:8080/bioskop/add?idBioskop=3&namaBioskop=Bioskop%20Fadiya&alamat=Jalan%20Taman&noTelepon=0211906399442&jumlahStudio=5. Lalu setelah mengakses halaman viewall, maka akan terlihat semua biskop saya (saat itu ada 3 bioskop). Setelah menambahkan dan membuka page viewall, setiap bioskopnya akan terlihat valuenya/parameternya. Mulai dari id, nama bioskop, alamat, nomor telepon, dan jumlah studio. Tampilan ini akan sesuai dengan kode html yang ditulis di html viewall-bioskop.html. Berikut screenshootnya:
+![screenshoot page viewAll](viewall.png)
+
+
 ## Tutorial 1
 ### What I have learned today
 ### Github
