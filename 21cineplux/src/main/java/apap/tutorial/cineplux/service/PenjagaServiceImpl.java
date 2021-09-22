@@ -30,4 +30,9 @@ public class PenjagaServiceImpl implements PenjagaService {
         }
         return null;
     }
+
+    @Override
+    public void deletePenjaga(Long noPenjaga) {
+        penjagaDB.deleteById(noPenjaga);
+    }
 }

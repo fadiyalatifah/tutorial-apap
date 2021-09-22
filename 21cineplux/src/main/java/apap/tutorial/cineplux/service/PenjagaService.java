@@ -8,6 +8,6 @@ import java.util.List;
 public interface PenjagaService {
     void addPenjaga(PenjagaModel penjaga);
     void updatePenjaga(PenjagaModel penjaga);
-//    List<BioskopModel> getPenjagaList();
     PenjagaModel getPenjagaByNoPenjaga(Long noPenjaga);
+    void deletePenjaga(Long noPenjaga);
 }

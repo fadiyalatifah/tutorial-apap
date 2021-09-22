@@ -64,12 +64,6 @@ public class PenjagaController {
     ) {
 
         LocalTime time = LocalTime.now();
-        System.out.println(time.isAfter(penjaga.getBioskop().getWaktuTutup()));
-        System.out.println(time.isBefore(penjaga.getBioskop().getWaktuBuka()));
-        System.out.println(time);
-        System.out.println(penjaga.getBioskop().getWaktuBuka());
-        System.out.println(penjaga.getBioskop().getWaktuTutup());
-
         if( (time.isAfter(penjaga.getBioskop().getWaktuTutup())) || (time.isBefore(penjaga.getBioskop().getWaktuBuka()))  ){
             penjagaService.updatePenjaga(penjaga);
             model.addAttribute("noPenjaga", penjaga.getNoPenjaga());
@@ -79,6 +73,25 @@ public class PenjagaController {
 
 
         return "error-page";
+    }
+
+    @GetMapping("/penjaga/delete/{noPenjaga}")
+    public String deletePenjaga(
+            @PathVariable Long noPenjaga,
+            Model model
+    ) {
+        PenjagaModel penjaga = penjagaService.getPenjagaByNoPenjaga(noPenjaga);
+
+        LocalTime time = LocalTime.now();
+        if( (time.isAfter(penjaga.getBioskop().getWaktuTutup())) || (time.isBefore(penjaga.getBioskop().getWaktuBuka()))  ){
+            penjagaService.deletePenjaga(noPenjaga);
+            model.addAttribute("penjaga", penjaga);
+            model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
+            return "delete-penjaga";
+        }
+
+        return "error-page";
+
     }
 
 }
