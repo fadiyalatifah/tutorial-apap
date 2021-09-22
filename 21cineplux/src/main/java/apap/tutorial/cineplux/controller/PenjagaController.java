@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalTime;
+import java.util.List;
+
 @Controller
 public class PenjagaController {
     @Qualifier("penjagaServiceImpl")
@@ -43,4 +46,39 @@ public class PenjagaController {
         model.addAttribute("namaPenjaga", penjaga.getNamaPenjaga());
         return "add-penjaga";
     }
+    // Nomor 2
+    @GetMapping("/penjaga/update/{noPenjaga}")
+    public String updatePenjagaForm(
+            @PathVariable Long noPenjaga,
+            Model model
+    ) {
+        PenjagaModel penjaga = penjagaService.getPenjagaByNoPenjaga(noPenjaga);
+        model.addAttribute("penjaga", penjaga);
+        return "form-update-penjaga";
+    }
+
+    @PostMapping("/penjaga/update")
+    public String updatePenjagaSubmit(
+            @ModelAttribute PenjagaModel penjaga,
+            Model model
+    ) {
+
+        LocalTime time = LocalTime.now();
+        System.out.println(time.isAfter(penjaga.getBioskop().getWaktuTutup()));
+        System.out.println(time.isBefore(penjaga.getBioskop().getWaktuBuka()));
+        System.out.println(time);
+        System.out.println(penjaga.getBioskop().getWaktuBuka());
+        System.out.println(penjaga.getBioskop().getWaktuTutup());
+
+        if( (time.isAfter(penjaga.getBioskop().getWaktuTutup())) || (time.isBefore(penjaga.getBioskop().getWaktuBuka()))  ){
+            penjagaService.updatePenjaga(penjaga);
+            model.addAttribute("noPenjaga", penjaga.getNoPenjaga());
+            model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
+            return "update-penjaga";
+        }
+
+
+        return "error-page";
+    }
+
 }
