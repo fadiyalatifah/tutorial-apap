@@ -16,7 +16,7 @@ Pada hari ini, saya kembali mempelajari service, model, dan controller. Lalu say
 * @Table =  @Entity berguna untuk membuat suatu string yang dimasukkan setelahnya menjadi nama tabel di dalam database. @Table dapat digunakan untuk mengganti nama tabel jika ingin mengubah nama yang ada di default @Entity.
 
 2. Pada class BioskopDB, terdapat method findByNoBioskop, apakah kegunaan dari method tersebut? 
-Method findByNoBioskop adalah method yang berfungsi untuk mencari data bioskop berdasarkan nomor bioskop yang didapatkan dari parameter fungsi ini. Pada interface BioskopDB, method ini bersifat optional.
+Method findByNoBioskop adalah method yang berfungsi untuk mencari data bioskop di database berdasarkan nomor bioskop yang didapatkan dari parameter fungsi ini. Pada method ini terdapat "findBy" yang merupkaan bawaah dari JPA repository yang sudah diimport. Dengan penggunaan findBy, maka pengambilan data bioskop bisa dilakukan secara langsung, tanpa harus mengakses ke tabel menggunakan query.  
 
 3. Jelaskan perbedaan kegunaan dari anotasi @JoinTable dan @JoinColumn 
 
