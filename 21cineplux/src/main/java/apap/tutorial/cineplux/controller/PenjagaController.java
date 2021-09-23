@@ -54,6 +54,7 @@ public class PenjagaController {
     ) {
         PenjagaModel penjaga = penjagaService.getPenjagaByNoPenjaga(noPenjaga);
         model.addAttribute("penjaga", penjaga);
+        model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
         return "form-update-penjaga";
     }
 
@@ -70,9 +71,9 @@ public class PenjagaController {
             model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
             return "update-penjaga";
         }
-
-
-        return "error-page";
+        model.addAttribute("noPenjaga", penjaga.getNoPenjaga());
+        model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
+        return "error-update-penjaga";
     }
 
     @GetMapping("/penjaga/delete/{noPenjaga}")
@@ -89,8 +90,9 @@ public class PenjagaController {
             model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
             return "delete-penjaga";
         }
-
-        return "error-page";
+        model.addAttribute("penjaga", penjaga);
+        model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
+        return "error-delete-penjaga";
 
     }
 
