@@ -9,4 +9,6 @@ public interface BioskopService {
     void updateBioskop(BioskopModel bioskop);
     List<BioskopModel> getBioskopList();
     BioskopModel getBioskopByNoBioskop(Long noBioskop);
+    void deleteBioskop(Long noBioskop);
+
 }

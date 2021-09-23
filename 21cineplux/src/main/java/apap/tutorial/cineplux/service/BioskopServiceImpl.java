@@ -35,4 +35,8 @@ public class BioskopServiceImpl implements BioskopService {
         }
         return null;
     }
+    @Override
+    public void deleteBioskop (Long noBioskop) {
+        bioskopDB.deleteById(noBioskop);
+    }
 }

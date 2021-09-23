@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,5 +75,22 @@ public class BioskopController {
         bioskopService.updateBioskop(bioskop);
         model.addAttribute("noBioskop", bioskop.getNoBioskop());
         return "update-bioskop";
+    }
+    @GetMapping("/bioskop/delete/{noBioskop}")
+    public String deleteBioskop(
+            @PathVariable Long noBioskop,
+            Model model
+    ) {
+        BioskopModel bioskop = bioskopService.getBioskopByNoBioskop(noBioskop);
+
+        LocalTime time = LocalTime.now();
+        if( (time.isAfter(bioskop.getWaktuTutup())) || (time.isBefore(bioskop.getWaktuBuka()))  ){
+            bioskopService.deleteBioskop(noBioskop);
+            model.addAttribute("bioskop", bioskop);
+            return "delete-bioskop";
+        }
+        model.addAttribute("bioskop", bioskop);
+        return "error-delete-bioskop";
+
     }
 }
