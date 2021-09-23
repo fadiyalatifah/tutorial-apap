@@ -53,6 +53,9 @@ public class PenjagaController {
             Model model
     ) {
         PenjagaModel penjaga = penjagaService.getPenjagaByNoPenjaga(noPenjaga);
+        if(penjaga == null) {
+            return "error-id-penjaga";
+        }
         model.addAttribute("penjaga", penjaga);
         model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
         return "form-update-penjaga";
@@ -82,7 +85,9 @@ public class PenjagaController {
             Model model
     ) {
         PenjagaModel penjaga = penjagaService.getPenjagaByNoPenjaga(noPenjaga);
-
+        if(penjaga == null) {
+            return "error-id-penjaga";
+        }
         LocalTime time = LocalTime.now();
         if( (time.isAfter(penjaga.getBioskop().getWaktuTutup())) || (time.isBefore(penjaga.getBioskop().getWaktuBuka()))  ){
             penjagaService.deletePenjaga(noPenjaga);
