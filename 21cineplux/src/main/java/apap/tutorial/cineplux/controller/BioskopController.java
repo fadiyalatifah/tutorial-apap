@@ -88,16 +88,24 @@ public class BioskopController {
             Model model
     ) {
         BioskopModel bioskop = bioskopService.getBioskopByNoBioskop(noBioskop);
+        LocalTime time = LocalTime.now();
         if(bioskop == null) {
             return "error-id-bioskop";
         }
         List<PenjagaModel> listPenjaga = bioskop.getListPenjaga();
-
+        String errorMessage = "";
         if(listPenjaga.size() != 0){
+            if( (time.isAfter(bioskop.getWaktuTutup())) || (time.isBefore(bioskop.getWaktuBuka()))  ){
+                errorMessage = "Terdapat penjaga pada bioskop ini. Bioskop yang bisa dihapus hanyalah bioskop yang tidak memiliki penjaga";
+                model.addAttribute("bioskop", bioskop);
+                model.addAttribute("errorMessage", errorMessage);
+                return "error-delete-bioskop";
+            }
+            errorMessage = "bioskop ini masih pada waktu buka dan memiliki penjaga";
             model.addAttribute("bioskop", bioskop);
+            model.addAttribute("errorMessage", errorMessage);
             return "error-delete-bioskop";
         } else {
-            LocalTime time = LocalTime.now();
             if( (time.isAfter(bioskop.getWaktuTutup())) || (time.isBefore(bioskop.getWaktuBuka()))  ){
                 bioskopService.deleteBioskop(noBioskop);
                 model.addAttribute("bioskop", bioskop);
@@ -105,6 +113,8 @@ public class BioskopController {
             }
 
         }
+        errorMessage = "Saat ini bioskop masih buka. Bioskop hanya bisa dihapus saat sedang tutup";
+        model.addAttribute("errorMessage", errorMessage);
         model.addAttribute("bioskop", bioskop);
         return "error-delete-bioskop";
 

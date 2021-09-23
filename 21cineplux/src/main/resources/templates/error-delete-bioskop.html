@@ -13,7 +13,7 @@
         <div class="card-body">
             <div class="justify-content-center">
                 <h1>GAGAL MENGHAPUS!</h1>
-                <h2 th:text="'Bioskop dengan nomor ' + ${noBioskop} + ' TIDAK berhasil dihapus karena masih di jam buka bioskop. Cobalah untuk menghapus ketika bioskop sudah tutup'"></h2>
+                <h2 th:text="'Bioskop dengan nomor ' + ${noBioskop} + ' TIDAK berhasil dihapus karena ' + ${errorMessage}"></h2>
                 <br>
                 <a class="btn btn-primary" th:href="@{/bioskop/viewall}">Kembali</a>
             </div>
