@@ -36,6 +36,15 @@ public class BioskopServiceImpl implements BioskopService {
         return null;
     }
     @Override
+    public BioskopModel getBioskopByNamaBioskop(String namaBioskop) {
+        Optional<BioskopModel> bioskop = bioskopDB.findByNamaBioskop(namaBioskop);
+        if (bioskop.isPresent()) {
+            return bioskop.get();
+        }
+        return null;
+    }
+
+    @Override
     public void deleteBioskop (Long noBioskop) {
         bioskopDB.deleteById(noBioskop);
     }

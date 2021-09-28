@@ -10,5 +10,6 @@ public interface BioskopService {
     List<BioskopModel> getBioskopList();
     BioskopModel getBioskopByNoBioskop(Long noBioskop);
     void deleteBioskop(Long noBioskop);
+    BioskopModel getBioskopByNamaBioskop(String namaBioskop);
 
 }

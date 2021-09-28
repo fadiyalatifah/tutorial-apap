@@ -78,9 +78,12 @@ public class BioskopController {
             @ModelAttribute BioskopModel bioskop,
             Model model
     ) {
-        bioskopService.updateBioskop(bioskop);
-        model.addAttribute("noBioskop", bioskop.getNoBioskop());
-        return "update-bioskop";
+        if(bioskopService.getBioskopByNamaBioskop(bioskop.getNamaBioskop())==null){
+            bioskopService.updateBioskop(bioskop);
+            model.addAttribute("noBioskop", bioskop.getNoBioskop());
+            return "update-bioskop";
+        }
+        return "home";
     }
     @GetMapping("/bioskop/delete/{noBioskop}")
     public String deleteBioskop(
