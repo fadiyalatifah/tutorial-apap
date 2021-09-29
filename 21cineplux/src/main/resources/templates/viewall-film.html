@@ -13,19 +13,6 @@
 <div class="container">
     <h2>Daftar Seluruh Film</h2>
     <br>
-<!--    <div th:each="film : ${listFilm}" class="card m-4 p-4">-->
-<!--        <div class="card-body">-->
-<!--            <div class="justify-content-center">-->
-<!--                <p th:text="'Nomor Film : ' + ${film.noFilm}"></p>-->
-<!--                <p th:text="'Nama Film : ' + ${film.namaFilm}"></p>-->
-<!--                <p th:text="'Deskripsi Film : ' + ${film.deskripsiFilm}"></p>-->
-<!--                <p th:if="${film.isDisplaying == 0}" th:text="'Sedang Tayang : YA'"></p>-->
-<!--                <p th:if="${film.isDisplaying == 1}" th:text="'Sedang Tayang : TIDAK'"></p>-->
-<!--                <br>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <br>-->
-<!--    </div>-->
     <div th:if="*{listFilm.size() != 0}">
         <table class="table">
             <thead>
@@ -41,17 +28,14 @@
                 <td th:text="${film.noFilm}"></td>
                 <td th:text="${film.namaFilm}"></td>
                 <td th:text="${film.deskripsiFilm}"></td>
-                <td th:if="${film.isDisplaying}">YA</td>
-                <td th:if="${!film.isDisplaying}">TIDAK</td>
+                <td th:if="${film.isDisplaying}">TIDAK</td>
+                <td th:if="${!film.isDisplaying}">YA</td>
 
             </tr>
             </tbody>
         </table>
 
     </div>
-
-
-
 
 
     <a class="btn btn-primary" href="/">Home</a>
