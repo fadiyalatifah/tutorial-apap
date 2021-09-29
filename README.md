@@ -2,6 +2,42 @@
 ## Authors
 * **Fadiya Latifah** - *1906399442* - *C*
 
+## Tutorial 3
+### What I have learned today
+Pada hari ini, saya kembali mempelajari service, model, dan controller. Lalu saya belajar tentang cara menggunakan  Java Persistence API (JPA) untuk mengintegrasikan database server. Selain itu juga belajar package-package yang ada di lombok.
+### Pertanyaan
+1. Tolong jelaskan secara singkat apa kegunaan dari anotasi-anotasi yang ada pada model (@AllArgsConstructor, @NoArgsConstructor, @Setter, @Getter, @Entity, @Table) 
+
+* @AllArgsConstructor = Merupakan salah satu interface bawaan package lombok yang berfungsi untuk menghasilkan/mengeluarkan constructor dengan 1 argumen untuk setiap field(bidang) di dalam class. Constructor yang dihasilkan secara default akan bertipe public dan tidak akan ke static field. Contoh fieldnya adalah @NonNull.
+* @NoArgsConstructor = Merupakan salah satu interface bawaan package lombok yang berfungsi untuk men-generate constructor dengan 0 parameter (no parameter constructor). interface ini akan menghasilkan pesan error jika constructor tidak bisa dibuat akibat adanya final fields.
+* @Setter = Merupakan salah satu syntax di lombok yang berguna agar lombok bisa menghasilkan method setter public secara otomatis untuk semua field di sebuah class. Jadi tidak perlu memasang setter secara manual seperti java pada umumnya.
+* @Getter = Merupakan salah satu syntax di lombok yang berguna agar lombok bisa menghasilkan method getter public secara otomatis untuk semua field di sebuah class. Jadi tidak perlu memasang getter secara manual seperti java pada umumnya.
+* @Entity = @Entity berguna untuk membuat suatu string yang dimasukkan setelahnya menjadi nama entity. Atau dalam kata lain merupakan class pada model untuk menujukkan bahwa ini adalah entitas/bisa juga nama tabel default. 
+* @Table =  @Entity berguna untuk membuat suatu string yang dimasukkan setelahnya menjadi nama tabel di dalam database. @Table dapat digunakan untuk mengganti nama tabel jika ingin mengubah nama yang ada di default @Entity.
+
+2. Pada class BioskopDB, terdapat method findByNoBioskop, apakah kegunaan dari method tersebut? 
+Method findByNoBioskop adalah method yang berfungsi untuk mencari data bioskop di database berdasarkan nomor bioskop yang didapatkan dari parameter fungsi ini. Pada method ini terdapat "findBy" yang merupkaan bawaah dari JPA repository yang sudah diimport. Dengan penggunaan findBy, maka pengambilan data bioskop bisa dilakukan secara langsung, tanpa harus mengakses ke tabel menggunakan query.  
+
+3. Jelaskan perbedaan kegunaan dari anotasi @JoinTable dan @JoinColumn 
+
+@JoinTable pada JDA biasanya bisa digunakan untuk mendapat database yang lebih ternormalisasi dan tidak banyak redundansi data akibat penggabungan banyak entitas. @JoinTable merupakan default typenya. @JoinTable bisa digunakan untuk mengatur hubungan antara antitas dengan tabel lain sehingga ketika data diakses, tabel harus di gabung dulu untuk mendapat sebuah hubungan.
+
+Sedangkan @JoinColumn biasa digunakan untuk menandai bahwa sebuah kolom itu merupakan kolom gabungan dari beberapa entitas/elemen. Biasa digunakan ketika entity punya hubungan langsung. @JoinColumn digunakan untuk meningkatkan performance karena bisa diguanakan tanpa harus menggabungkan tabel tambahan(langsung akses saja kolomnya).
+
+4. Pada class PenjagaModel, digunakan anotasi @JoinColumn pada atribut bioskop, apa kegunaan dari name, referencedColumnName, dan nullable dalam anotasi tersebut? dan apa perbedaan nullable dan penggunaan anotasi @NotNull
+* name = untuk menamai kolom baru yang merupakan gabungan lebih dari satu elemen/entitas, atau dalam kata lain sebagai nama kolom foreign key
+* referencedColumnName = berisi nama kolom yang dijadikan referensi/rujukan oleh kolom name(foreign key)
+* nullable: menandai apakah kolom foreign key boleh bernilai null atau tidak. 
+* Perbedaan nullable dengan @NotNull = Kalau nullable merupakan element bertipe boolean untuk menandakan apakah kolom foreign key boleh bernilai null atau tidak. Sedangkan @NotNull itu menandakan bahwa nilainya tidak boleh null. jika nilainya kosong masih dilegalkan.
+
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER
+* FetchType.LAZY = Merupakan salah satu strategi mengambil data dari database, dimana database diambil dengan lazy( inisialisasi objek ditunda selama mungkin) saat pertama kali diakses. Jadi data akan diinisialisasi dan dimuat ke dalam memori ketika ada panggilan eksplisit saja.
+* CascadeType.ALL = Merupakan salah satu cara menyimpan entitas yang dipetakan setiap entitas owner disimpan. CascadeType.ALL digunakan bila kita ingin membuat rules bahwa semua action/perubahan yang terjadi antara owner dengan entitas lain, haruslah di cascade.
+* FetchType.EAGER = Merupakan salah satu strategi mengambil data dari database, yang merupakan persyaratan pada runtime provider bahwa data harus diambil dengan eager(inisiasi data terjadi di tempat). Jadi ketika load suatu data, maka akan memanggil data lain yang terasosiasi juga lalu menyimpannya di memori
+
+### What I did not understand
+
+
 ## Tutorial 2
 ### What I have learned today
 1. Pertanyaan 1: Cobalah untuk menambahkan sebuah Bioskop dengan mengakses link berikut: http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20 APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx&jumlahStudio=10 Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi?
