@@ -70,6 +70,37 @@
                 <a class="btn btn-primary" th:href="@{/penjaga/add/} + ${bioskop.noBioskop}">tambah penjaga</a>
                 <a class="btn btn-primary" th:href="@{/bioskop/delete/} + ${bioskop.noBioskop}">Delete Bioskop</a>
 
+
+                <div>
+<!--                    tabel film-->
+<!--                    <div th:if="*{listPenjaga.size() != 0}">-->
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>No Film</th>
+                                <th>Nama Film</th>
+                                <th>Deskripsi Film</th>
+                                <th>Displaying/Not</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="film, iterationStatus : ${listFilm}">
+                                <td th:text="${film.noFilm}"></td>
+                                <td th:text="${film.namaFilm}"></td>
+                                <td th:text="${film.deskripsiFilm}"></td>
+                                <td th:if="${film.isDisplaying}">TIDAK</td>
+                                <td th:if="${!film.isDisplaying}">YA</td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
             </div>
         </div>
     </div>
@@ -79,16 +110,3 @@
 
 </html>
 
-
-<!--                <div class="col">-->
-<!--                    <h6>Penjaga : </h6>-->
-<!--                    <div th:each="penjaga : ${listPenjaga}">-->
-<!--                        <p th:text="'Nama : ' + ${penjaga.namaPenjaga}"></p>-->
-<!--                        <p th:if="${penjaga.jenisKelamin == 0}">Jenis Kelamin : Perempuan</p>-->
-<!--                        <p th:if="${penjaga.jenisKelamin == 1}">Jenis Kelamin : Laki-laki</p>-->
-<!--                        <a class="btn btn-primary" th:href="@{/penjaga/update/} + ${penjaga.noPenjaga}">Update Penjaga</a>-->
-<!--                        <a class="btn btn-primary" th:href="@{/penjaga/delete/} + ${penjaga.noPenjaga}">Delete Penjaga</a>-->
-
-<!--                        <hr>-->
-<!--                    </div>-->
-<!--                </div>-->
