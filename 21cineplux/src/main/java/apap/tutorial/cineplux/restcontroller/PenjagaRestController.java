@@ -84,8 +84,11 @@ public class PenjagaRestController {
     private Mono<String> getStatus(@PathVariable("noPenjaga") Long noPenjaga){
         return penjagaRestService.getStatus(noPenjaga);
     }
-    @GetMapping(value = "/penjaga/full")
+    @GetMapping(value = "/full2")
     private Mono<PenjagaDetail> postStatus(){
         return penjagaRestService.postStatus();
     }
+
+
+
 }
