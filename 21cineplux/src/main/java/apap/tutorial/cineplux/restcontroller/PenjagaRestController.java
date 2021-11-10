@@ -1,8 +1,5 @@
 package apap.tutorial.cineplux.restcontroller;
-
-import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.model.PenjagaModel;
-//import apap.tutorial.cineplux.rest.PenjagaDetail;
 import apap.tutorial.cineplux.rest.PenjagaDetail;
 import apap.tutorial.cineplux.service.PenjagaRestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,17 +44,16 @@ public class PenjagaRestController {
             );
         }
     }
-
     @DeleteMapping(value = "/penjaga/{noPenjaga}")
     private ResponseEntity deletePenjaga(
             @PathVariable("noPenjaga") Long noPenjaga
     ){
         try {
             penjagaRestService.deletePenjaga(noPenjaga);
-            return ResponseEntity.ok("Penjaga with No Penjaga " + String.valueOf(noPenjaga) + " Deleted!");
+            return ResponseEntity.ok("Penjaga has been deleted”");
         } catch (NoSuchElementException e){
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Penjaga with No Penjaga " + String.valueOf(noPenjaga) + " Not Found."
+                    HttpStatus.NOT_FOUND, "Penjaga Not Found."
             );
         } catch (UnsupportedOperationException e) {
             throw new ResponseStatusException(
@@ -72,6 +68,7 @@ public class PenjagaRestController {
     ){
         try{
             return penjagaRestService.updatePenjaga(noPenjaga, penjaga);
+            
         } catch (NoSuchElementException e){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Penjaga with No Penjaga " + String.valueOf(noPenjaga) + " Not Found."
