@@ -4,7 +4,11 @@
 
 ## Tutorial 4
 ### What I have learned today
+<<<<<<< HEAD
 Pada hari ini, 
+=======
+Pada hari ini, saya belajar lebih lanjut tentang thymeleaf & requestmapping 
+>>>>>>> 1f71f3df438d3c30a92408ad075b781307a05598
 ### Pertanyaan
 1. Jelaskan perbedaan th:include dan th:replace!
 > Menurut pengetahuan dan beberapa sumber yang saya baca,  perbedaan keduanya adalah, th:include akan menyertakan isi content fragment ke dalam host tag-nya. Content akan disisipkan ke body-nya host tag, tapi fragment/ host tag fragment tidak akan disisipkan. Sedangkan pada th:replace , fragment justru yang akan menggantikan tag hostnya. Atau dalam kata lain pada th:replace, tag host akan dihapus dan fragmen beserta host tagnya akan menggantikan tag host tersebut. 
