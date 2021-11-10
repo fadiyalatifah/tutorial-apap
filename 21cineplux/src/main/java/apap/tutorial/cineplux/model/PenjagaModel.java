@@ -36,6 +36,41 @@ public class PenjagaModel implements Serializable {
     @Column(nullable = false)
     private Integer jenisKelamin;
 
+    public Long getNoPenjaga() {
+        return noPenjaga;
+    }
+
+    public void setNoPenjaga(Long noPenjaga) {
+        this.noPenjaga = noPenjaga;
+    }
+
+    public String getNamaPenjaga() {
+        return namaPenjaga;
+    }
+
+    public void setNamaPenjaga(String namaPenjaga) {
+        this.namaPenjaga = namaPenjaga;
+    }
+
+    public Integer getJenisKelamin() {
+        return jenisKelamin;
+    }
+
+    public void setJenisKelamin(Integer jenisKelamin) {
+        this.jenisKelamin = jenisKelamin;
+    }
+
+    public Integer getUmur() {
+        return umur;
+    }
+
+    public void setUmur(Integer umur) {
+        this.umur = umur;
+    }
+
+    @Column
+    private Integer umur;
+
     //Relasi dengan BioskopModel
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "no_bioskop", referencedColumnName = "noBioskop", nullable = false)

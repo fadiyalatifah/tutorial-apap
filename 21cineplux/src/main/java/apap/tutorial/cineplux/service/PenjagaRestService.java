@@ -12,6 +12,7 @@ public interface PenjagaRestService {
     PenjagaModel getPenjagaByNoPenjaga(Long noPenjaga);
     PenjagaModel updatePenjaga(Long noPenjaga, PenjagaModel penjagaUpdate);
     void deletePenjaga(Long noPenjaga);
+    void umurPenjaga(Long noPenjaga);
     Mono<String> getStatus(Long noPenjaga);
     Mono<PenjagaDetail> postStatus();
 }

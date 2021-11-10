@@ -89,6 +89,11 @@ public class PenjagaRestController {
         return penjagaRestService.postStatus();
     }
 
+    @GetMapping(value = "penjaga/umur/{noPenjaga}")
+    private PenjagaModel getUmur(@PathVariable("noPenjaga") Long noPenjaga) {
+        penjagaRestService.umurPenjaga(noPenjaga);
+        return penjagaRestService.getPenjagaByNoPenjaga(noPenjaga);
+    }
 
 
 }

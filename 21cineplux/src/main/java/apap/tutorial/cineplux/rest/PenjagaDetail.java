@@ -11,10 +11,24 @@ import java.util.Date;
 public class PenjagaDetail {
     private String status;
 
-    @JsonProperty("penjaga-license")
-    private Integer penjagaLicense;
+//    @JsonProperty("penjaga-license")
+//    private Integer penjagaLicense;
 
-    @JsonProperty("valid-until")
-    private Date validUntil;
+//    @JsonProperty("valid-until")
+//    private Date validUntil;
+
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("age")
+    private Integer age;
+
+    @JsonProperty("count")
+    private Integer count;
+
 }
+
+
+
+
 

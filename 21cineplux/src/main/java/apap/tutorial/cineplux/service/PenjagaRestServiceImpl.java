@@ -68,7 +68,7 @@ public class PenjagaRestServiceImpl implements PenjagaRestService{
     }
 
     public PenjagaRestServiceImpl(WebClient.Builder webClientBuilder){
-        this.webClient = webClientBuilder.baseUrl(Setting.bioskopUrl).build();
+        this.webClient = webClientBuilder.baseUrl(Setting.apiUrl).build();
     }
 
     @Override
@@ -84,4 +84,14 @@ public class PenjagaRestServiceImpl implements PenjagaRestService{
 
         return this.webClient.post().uri("/rest/penjaga/full").syncBody(data).retrieve().bodyToMono(PenjagaDetail.class);
     }
+
+    @Override
+    public void umurPenjaga(Long noPenjaga) {
+        PenjagaModel penjaga = getPenjagaByNoPenjaga(noPenjaga);
+        Mono<PenjagaDetail> uriWeb = this.webClient.get().uri("?name=" + penjaga.getNamaPenjaga()).retrieve().bodyToMono(PenjagaDetail.class);
+        Integer usia = uriWeb.block().getAge();
+        penjaga.setUmur(usia);
+
+    }
+
 }
