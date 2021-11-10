@@ -69,6 +69,7 @@ public class BioskopRestServiceImpl implements BioskopRestService{
         }else{
             throw new UnsupportedOperationException("Bioskop still open!");
         }
+
     }
 
     public BioskopRestServiceImpl(WebClient.Builder webClientBuilder){

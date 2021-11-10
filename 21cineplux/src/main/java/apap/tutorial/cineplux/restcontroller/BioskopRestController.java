@@ -71,6 +71,7 @@ public class BioskopRestController {
             );
         }
     }
+
     @GetMapping(value = "/list-bioskop")
     private List<BioskopModel> retrieveListBioskop(){
         return bioskopRestService.retrieveListBioskop();
