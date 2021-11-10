@@ -50,7 +50,7 @@ public class PenjagaRestController {
     ){
         try {
             penjagaRestService.deletePenjaga(noPenjaga);
-            return ResponseEntity.ok("Penjaga has been deleted”");
+            return ResponseEntity.ok("Penjaga has been deleted");
         } catch (NoSuchElementException e){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Penjaga Not Found."
@@ -62,13 +62,13 @@ public class PenjagaRestController {
         }
     }
     @PutMapping(value = "/penjaga/{noPenjaga}")
-    private PenjagaModel updatePenjaga(
+    private ResponseEntity updatePenjaga(
             @PathVariable("noPenjaga") Long noPenjaga,
             @RequestBody PenjagaModel penjaga
     ){
         try{
-            return penjagaRestService.updatePenjaga(noPenjaga, penjaga);
-            
+            penjagaRestService.updatePenjaga(noPenjaga, penjaga);
+            return ResponseEntity.ok("Update Penjaga Success");
         } catch (NoSuchElementException e){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Penjaga with No Penjaga " + String.valueOf(noPenjaga) + " Not Found."
