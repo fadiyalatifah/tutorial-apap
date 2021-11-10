@@ -88,9 +88,10 @@ public class PenjagaRestServiceImpl implements PenjagaRestService{
     @Override
     public void umurPenjaga(Long noPenjaga) {
         PenjagaModel penjaga = getPenjagaByNoPenjaga(noPenjaga);
-        Mono<PenjagaDetail> uriWeb = this.webClient.get().uri("?name=" + penjaga.getNamaPenjaga()).retrieve().bodyToMono(PenjagaDetail.class);
-        Integer usia = uriWeb.block().getAge();
-        penjaga.setUmur(usia);
+        String getPenjaga = penjaga.getNamaPenjaga();
+        Mono<PenjagaDetail> uriWeb = this.webClient.get().uri("?name=" + getPenjaga).retrieve().bodyToMono(PenjagaDetail.class);
+        Integer intAge = uriWeb.block().getAge();
+        penjaga.setUmur(intAge);
 
     }
 
