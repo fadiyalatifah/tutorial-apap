@@ -1,6 +1,9 @@
 package apap.tutorial.cineplux.service;
 
 import apap.tutorial.cineplux.model.BioskopModel;
+import apap.tutorial.cineplux.rest.BioskopDetail;
+import reactor.core.publisher.Mono;
+
 import java.util.List;
 
 public interface BioskopRestService {
@@ -9,4 +12,6 @@ public interface BioskopRestService {
     BioskopModel getBioskopByNoBioskop(Long noBioskop);
     BioskopModel updateBioskop(Long noBioskop, BioskopModel bioskopUpdate);
     void deleteBioskop(Long noCabang);
+    Mono<String> getStatus(Long noBioskop);
+    Mono<BioskopDetail> postStatus();
 }

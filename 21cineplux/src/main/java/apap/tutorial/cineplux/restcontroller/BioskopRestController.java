@@ -1,7 +1,8 @@
 package apap.tutorial.cineplux.restcontroller;
 
 import apap.tutorial.cineplux.model.BioskopModel;
-//import apap.tutorial.cineplux.rest.BioskopDetail;
+import apap.tutorial.cineplux.rest.BioskopDetail;
+import apap.tutorial.cineplux.rest.BioskopDetail;
 import apap.tutorial.cineplux.service.BioskopRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -78,5 +79,17 @@ public class BioskopRestController {
     private List<BioskopModel> retrieveListBioskop(){
         return bioskopRestService.retrieveListBioskop();
     }
+
+//    tambahan
+    @GetMapping(value = "/bioskop/{noBioskop}/status")
+    private Mono<String> getStatus(@PathVariable("noBioskop") Long noBioskop){
+        return bioskopRestService.getStatus(noBioskop);
+    }
+
+    @GetMapping(value = "/full")
+    private Mono<BioskopDetail> postStatus(){
+        return bioskopRestService.postStatus();
+    }
+
 
 }
