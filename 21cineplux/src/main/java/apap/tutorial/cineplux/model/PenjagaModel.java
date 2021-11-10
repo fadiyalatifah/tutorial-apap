@@ -20,7 +20,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = "penjaga")
-@JsonIgnoreProperties(value = {"penjaga"}, allowSetters = true)
+@JsonIgnoreProperties(value = {"bioskop"}, allowSetters = true)
 public class PenjagaModel implements Serializable {
 
     @Id
