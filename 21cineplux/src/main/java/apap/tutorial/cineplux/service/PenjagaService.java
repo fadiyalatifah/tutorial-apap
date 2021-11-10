@@ -9,5 +9,6 @@ public interface PenjagaService {
     void addPenjaga(PenjagaModel penjaga);
     void updatePenjaga(PenjagaModel penjaga);
     PenjagaModel getPenjagaByNoPenjaga(Long noPenjaga);
-    void deletePenjaga(Long noPenjaga);
+    int deletePenjaga(PenjagaModel penjaga);
+
 }

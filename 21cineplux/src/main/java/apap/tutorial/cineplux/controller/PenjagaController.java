@@ -79,26 +79,42 @@ public class PenjagaController {
         return "error-update-penjaga";
     }
 
-    @GetMapping("/penjaga/delete/{noPenjaga}")
-    public String deletePenjaga(
-            @PathVariable Long noPenjaga,
+//    @GetMapping("/penjaga/delete/{noPenjaga}")
+//    public String deletePenjaga(
+//            @PathVariable Long noPenjaga,
+//            Model model
+//    ) {
+//        PenjagaModel penjaga = penjagaService.getPenjagaByNoPenjaga(noPenjaga);
+//        if(penjaga == null) {
+//            return "error-id-penjaga";
+//        }
+//        LocalTime time = LocalTime.now();
+//        if( (time.isAfter(penjaga.getBioskop().getWaktuTutup())) || (time.isBefore(penjaga.getBioskop().getWaktuBuka()))  ){
+//            penjagaService.deletePenjaga(penjaga);
+//            model.addAttribute("penjaga", penjaga);
+//            model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
+//            return "delete-penjaga";
+//        }
+//        model.addAttribute("penjaga", penjaga);
+//        model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
+//        return "error-delete-penjaga";
+//
+//    }
+
+    @PostMapping("/penjaga/delete")
+    public String deletePenjagaSubmit(
+            @ModelAttribute BioskopModel bioskop,
             Model model
-    ) {
-        PenjagaModel penjaga = penjagaService.getPenjagaByNoPenjaga(noPenjaga);
-        if(penjaga == null) {
-            return "error-id-penjaga";
+    ){
+        model.addAttribute("noBioskop", bioskop.getNoBioskop());
+        int res =1;
+        for(PenjagaModel penjaga: bioskop.getListPenjaga()){
+            res = penjagaService.deletePenjaga(penjaga);
         }
-        LocalTime time = LocalTime.now();
-        if( (time.isAfter(penjaga.getBioskop().getWaktuTutup())) || (time.isBefore(penjaga.getBioskop().getWaktuBuka()))  ){
-            penjagaService.deletePenjaga(noPenjaga);
-            model.addAttribute("penjaga", penjaga);
-            model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
+        if(res==1){
             return "delete-penjaga";
         }
-        model.addAttribute("penjaga", penjaga);
-        model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
-        return "error-delete-penjaga";
-
+        return "error";
     }
 
 

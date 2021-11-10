@@ -2,6 +2,23 @@
 ## Authors
 * **Fadiya Latifah** - *1906399442* - *C*
 
+## Tutorial 4
+### What I have learned today
+Pada hari ini, saya belajar lebih lanjut tentang thymeleaf & requestmapping 
+### Pertanyaan
+1. Jelaskan perbedaan th:include dan th:replace!
+> Menurut pengetahuan dan beberapa sumber yang saya baca,  perbedaan keduanya adalah, th:include akan menyertakan isi content fragment ke dalam host tag-nya. Content akan disisipkan ke body-nya host tag, tapi fragment/ host tag fragment tidak akan disisipkan. Sedangkan pada th:replace , fragment justru yang akan menggantikan tag hostnya. Atau dalam kata lain pada th:replace, tag host akan dihapus dan fragmen beserta host tagnya akan menggantikan tag host tersebut. 
+
+2. Jelaskan apa fungsi dari th:object!
+> th:object berfungsi untuk menspesifikasikan object yang akan diikat oleh formulir yang dikirimkan. Pada lab ini, th:object digunakan saat pengiriman form add & update bioskop ataupun penjaga. Contohnya dengan mengikat objek bioskop "th:object="${bioskop}" pada formulir add bioskop, maka saat formulir di post, value dari pengisian formulir di html akan di-pass ke controller.
+
+
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+> th:object yang menggunakan asterisk(*) akan mengevaluasi expression hanya pada objek-objek yang dipilih, bukan keseluruhan konteks. Sedangkan th:object yang menggunakan dollarsign($) akan mengevaluasi expression pada seluruh objek yang diikat. Contohnya penggunaan th:object $ pada konteks bioskop adalah "th:object="${bioskop}". Sedangkan asterisk bisa digunakan pada salah satu atribut di bioskop, contohnya "th:object="*{noBioskop}".
+
+
+### What I did not understand
+
 ## Tutorial 3
 ### What I have learned today
 Pada hari ini, saya kembali mempelajari service, model, dan controller. Lalu saya belajar tentang cara menggunakan  Java Persistence API (JPA) untuk mengintegrasikan database server. Selain itu juga belajar package-package yang ada di lombok.
