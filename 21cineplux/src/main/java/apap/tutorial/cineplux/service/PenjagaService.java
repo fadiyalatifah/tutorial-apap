@@ -12,3 +12,6 @@ public interface PenjagaService {
     int deletePenjaga(PenjagaModel penjaga);
 
 }
+
+
+
