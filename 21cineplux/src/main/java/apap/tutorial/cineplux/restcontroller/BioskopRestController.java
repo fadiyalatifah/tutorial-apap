@@ -2,7 +2,6 @@ package apap.tutorial.cineplux.restcontroller;
 
 import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.rest.BioskopDetail;
-import apap.tutorial.cineplux.rest.BioskopDetail;
 import apap.tutorial.cineplux.service.BioskopRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +32,7 @@ public class BioskopRestController {
         }
     }
     @GetMapping(value = "/bioskop/{noBioskop}")
-    private BioskopModel retrieveBioskop(@PathVariable("noBioskop") Long noBioskop){
+    private BioskopModel retrieveBioskop(@PathVariable(value = "noBioskop") Long noBioskop){
         try{
             return bioskopRestService.getBioskopByNoBioskop(noBioskop);
         }catch (NoSuchElementException e){
@@ -42,7 +41,6 @@ public class BioskopRestController {
             );
         }
     }
-
     @DeleteMapping(value = "/bioskop/{noBioskop}")
     private ResponseEntity deleteBioskop(
             @PathVariable("noBioskop") Long noBioskop
@@ -60,7 +58,6 @@ public class BioskopRestController {
             );
         }
     }
-
     @PutMapping(value = "/bioskop/{noBioskop}")
     private BioskopModel updateBioskop(
             @PathVariable("noBioskop") Long noBioskop,
@@ -74,13 +71,11 @@ public class BioskopRestController {
             );
         }
     }
-
     @GetMapping(value = "/list-bioskop")
     private List<BioskopModel> retrieveListBioskop(){
         return bioskopRestService.retrieveListBioskop();
     }
 
-//    tambahan
     @GetMapping(value = "/bioskop/{noBioskop}/status")
     private Mono<String> getStatus(@PathVariable("noBioskop") Long noBioskop){
         return bioskopRestService.getStatus(noBioskop);
@@ -90,6 +85,5 @@ public class BioskopRestController {
     private Mono<BioskopDetail> postStatus(){
         return bioskopRestService.postStatus();
     }
-
 
 }

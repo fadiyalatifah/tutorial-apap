@@ -1,4 +1,5 @@
 package apap.tutorial.cineplux.service;
+
 import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.repository.BioskopDB;
 import apap.tutorial.cineplux.rest.BioskopDetail;
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.reactive.function.client.WebClient; // tambah
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import javax.transaction.Transactional;
@@ -18,8 +19,9 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class BioskopRestServiceImpl implements BioskopRestService {
+public class BioskopRestServiceImpl implements BioskopRestService{
     private final WebClient webClient;
+
     @Autowired
     private BioskopDB bioskopDB;
 
@@ -69,7 +71,6 @@ public class BioskopRestServiceImpl implements BioskopRestService {
         }
     }
 
-//    tambahan
     public BioskopRestServiceImpl(WebClient.Builder webClientBuilder){
         this.webClient = webClientBuilder.baseUrl(Setting.bioskopUrl).build();
     }
@@ -87,5 +88,4 @@ public class BioskopRestServiceImpl implements BioskopRestService {
 
         return this.webClient.post().uri("/rest/bioskop/full").syncBody(data).retrieve().bodyToMono(BioskopDetail.class);
     }
-
 }
