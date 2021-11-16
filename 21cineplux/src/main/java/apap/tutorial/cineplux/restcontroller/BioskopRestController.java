@@ -87,4 +87,10 @@ public class BioskopRestController {
         return bioskopRestService.postStatus();
     }
 
+    @GetMapping(value = "/list-bioskop/order-by-name")
+    private List<BioskopModel> a(){
+        return bioskopRestService.retrieveListBioskopa();
+    }
+
+
 }
