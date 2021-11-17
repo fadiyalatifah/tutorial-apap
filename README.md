@@ -2,6 +2,23 @@
 ## Authors
 * **Fadiya Latifah** - *1906399442* - *C*
 
+## Tutorial 5
+### Pertanyaan
+1. Apa itu Postman? Apa kegunaannya?
+> Postman adalah aplikasi yang berperan sebagai REST Client, yaitu tools untuk melakukan uji coba REST API. Postman berguna dalam proses development/testing API karena mampu menguji API yang telah dibuat developer, atau biasa disebut GUI API Caller. Contoh fitur yang berguna adalah fitur mock server, yaitu fitur yang berguna untuk menguji API yang belum di deploy namun sudah bisa diakses dari internet dengan postman ini. Postman juga sangat berguna bagi developer/QA untuk mengumpulkan API yang dapat dibuat menjadi sebuah dokumentasi full dari suatu proyek.
+
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty.
+> @JsonIgnoreProperties: Perintah ini berfungsi untuk menandai daftar properties yang akan diabaikan pada class level. Fungsi ini dapat digunakan ketika kita ingin mengabagikan pemprosesan JSON saat desentralisasi agar hasil API REST call nya hanya informasi yang penting (lebih bersih hasil REST API nya).
+> @JsonProperty: Perintah ini berfungsi untuk menspesifikkan method non-standard getter-setter untuk variable selain serialisasi dan deserialisasi biasa. @JsonProperty berguna untuk menandai getter setter untuk digunakan dengan json property. Nama  properti akan dipetakan (mapping) sengan keys dari JSON selama proses serialisasi dan deserialisasi. 
+
+3. Apa kegunaan atribut WebClient?
+> Webclient yang ada pada BioskopRestServiceImpl berguna untuk menerima/mengirim dari dari URI yang direquest(Remote REST service). Webclient juga merupakan antarmuka yang mewakili entry point dalam melakukan request ke web di spring.
+
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
+> ResponseEntity : merupakan objek yang termasuk ke extension dari HttpEntity yang merepresentasikan segala komponen pada HTTP response. HTTP response meliputi body, status, dan headers. Kegunaan ResponseEntity adalah agar pengguna bisa memodifikasi respons dengan status code atau header yang opsional.  
+> BindingResult: merupakan objek atau general interface  yang menyimpan hasil validasi dan binding, juga berisi kesalahan yang mungkin terjadi pada program Spring. Objek ini harus ada setelah objek model tervalidasi. Jika gagal, maka spring akan melempar exception. 
+
+
 ## Tutorial 4
 ### What I have learned today
 Pada hari ini, saya belajar lebih lanjut tentang thymeleaf & requestmapping 
