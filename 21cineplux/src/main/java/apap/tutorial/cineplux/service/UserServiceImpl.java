@@ -51,4 +51,11 @@ public class UserServiceImpl implements UserService {
         userDB.delete(user);
     }
 
+    @Override
+    public void updatePassword(UserModel user, String password) {
+        String pass = encrypt(password);
+        user.setPassword(pass);
+        userDB.save(user);
+    }
+
 }

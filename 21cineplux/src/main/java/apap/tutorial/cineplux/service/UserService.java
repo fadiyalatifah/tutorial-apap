@@ -11,4 +11,5 @@ public interface UserService {
     List<UserModel> getUserList();
     UserModel getUserByUsername(String username);
     void deleteUser(UserModel user);
+    void updatePassword(UserModel user, String password);
 }
