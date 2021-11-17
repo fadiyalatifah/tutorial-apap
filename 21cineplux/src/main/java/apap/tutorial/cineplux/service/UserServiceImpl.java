@@ -5,11 +5,13 @@ import apap.tutorial.cineplux.model.UserModel;
 import apap.tutorial.cineplux.repository.UserDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -37,4 +39,16 @@ public class UserServiceImpl implements UserService {
         String hashedPassword = passwordEncoder.encode(password);
         return hashedPassword;
     }
+
+    @Override
+    public UserModel getUserByUsername(String username) {
+        UserModel user = userDB.findByUsername(username);
+        return user;
+    }
+
+    @Override
+    public void deleteUser (UserModel user) {
+        userDB.delete(user);
+    }
+
 }
