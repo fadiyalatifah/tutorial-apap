@@ -1,5 +1,6 @@
 package apap.tutorial.cineplux.controller;
 
+import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.model.RoleModel;
 import apap.tutorial.cineplux.model.UserModel;
 import apap.tutorial.cineplux.service.RoleService;
@@ -37,5 +38,12 @@ public class UserController {
         userService.addUser(user);
         model.addAttribute("user", user);
         return "redirect:/";
+    }
+
+    @GetMapping("/viewall")
+    public String listUser(Model model){
+        List<UserModel> listUser = userService.getUserList();
+        model.addAttribute("listUser", listUser);
+        return "viewall-user";
     }
 }
