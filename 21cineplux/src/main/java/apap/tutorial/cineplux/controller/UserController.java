@@ -32,7 +32,7 @@ public class UserController {
         return "form-add-user";
     }
 
-    @PostMapping
+    @PostMapping("/add")
     private String addUserSubmit(@ModelAttribute UserModel user, Model model){
         userService.addUser(user);
         model.addAttribute("user", user);
