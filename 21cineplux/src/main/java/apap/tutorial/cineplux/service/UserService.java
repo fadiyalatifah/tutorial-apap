@@ -12,4 +12,5 @@ public interface UserService {
     UserModel getUserByUsername(String username);
     void deleteUser(UserModel user);
     void updatePassword(UserModel user, String password);
+    boolean isMatch(String oldPassword, String newPassword);
 }

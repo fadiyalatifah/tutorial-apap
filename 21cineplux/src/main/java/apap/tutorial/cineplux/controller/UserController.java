@@ -1,13 +1,10 @@
 package apap.tutorial.cineplux.controller;
 
-import apap.tutorial.cineplux.model.BioskopModel;
-import apap.tutorial.cineplux.model.PenjagaModel;
 import apap.tutorial.cineplux.model.RoleModel;
 import apap.tutorial.cineplux.model.UserModel;
 import apap.tutorial.cineplux.service.RoleService;
 import apap.tutorial.cineplux.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -63,8 +60,7 @@ public class UserController {
     @RequestMapping(value = "/update-password", method = RequestMethod.POST)
     private String updatePasswordSubmit(@RequestParam String oldPass, String newPass, String confirmPass, String username, Model model){
         UserModel user = userService.getUserByUsername(username);
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if(encoder.matches(oldPass, user.getPassword())){
+        if(userService.isMatch(oldPass, user.getPassword())){
             if(newPass.equals(confirmPass)){
                 userService.updatePassword(user, newPass);
                 model.addAttribute("status","Password berhasil diubah");
