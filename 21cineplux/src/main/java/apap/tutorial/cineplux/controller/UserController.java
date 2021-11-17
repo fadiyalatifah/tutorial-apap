@@ -58,11 +58,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/update-password", method = RequestMethod.POST)
-    private String updatePasswordSubmit(@RequestParam String oldPass, String newPass, String confirmPass, String username, Model model){
+    private String updatePasswordSubmit(@RequestParam String oldPassword, String newPassword, String newPassword2, String username, Model model){
         UserModel user = userService.getUserByUsername(username);
-        if(userService.checkMatch(oldPass, user.getPassword())){
-            if(newPass.equals(confirmPass)){
-                userService.updatePassword(user, newPass);
+        if(userService.checkMatch(oldPassword, user.getPassword())){
+            if(newPassword.equals(newPassword2)){
+                userService.updatePassword(user, newPassword);
                 model.addAttribute("pesan","Password berhasil diubah");
             }
             else{
