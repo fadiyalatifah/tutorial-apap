@@ -9,4 +9,5 @@ import java.util.Optional;
 
 public interface UserDB extends JpaRepository<UserModel, Long> {
     UserModel findByUsername(String username);
+    UserModel findByEmail(String email);
 }

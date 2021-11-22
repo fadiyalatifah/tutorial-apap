@@ -5,6 +5,7 @@ import apap.tutorial.cineplux.model.UserModel;
 import apap.tutorial.cineplux.service.RoleService;
 import apap.tutorial.cineplux.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,13 @@ public class UserController {
 
     @PostMapping("/add")
     private String addUserSubmit(@ModelAttribute UserModel user, Model model){
+        List<UserModel> listUser = userService.getUserList();
+        for (UserModel x : listUser){
+            if (x.getEmail().equals(user.getEmail())){
+                return "gagal";
+            }
+        }
+
         userService.addUser(user);
         model.addAttribute("user", user);
         return "redirect:/";

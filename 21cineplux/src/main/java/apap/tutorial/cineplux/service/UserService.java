@@ -10,6 +10,7 @@ public interface UserService {
     String encrypt(String password);
     List<UserModel> getUserList();
     UserModel getUserByUsername(String username);
+    UserModel getUserByEmail(String email);
     void deleteUser(UserModel user);
     void updatePassword(UserModel user, String password);
     boolean checkMatch(String oldPassword, String newPassword);

@@ -47,6 +47,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserModel getUserByEmail(String email) {
+        UserModel user = userDB.findByEmail(email);
+        return user;
+    }
+
+    @Override
     public void deleteUser (UserModel user) {
         userDB.delete(user);
     }
