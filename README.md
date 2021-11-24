@@ -1,6 +1,32 @@
 # Tutorial APAP
 ## Authors
 * **Fadiya Latifah** - *1906399442* - *C*
+## Tutorial 6
+### Pertanyaan
+**1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?**
+* Otentikasi : Merupakan proses memverifikasi dan mengidentifikasi siapa user (beserta detailnya). Contohnya seperti apakah pengguna merupakan user yang sesuai, mempunyai role, dan lain-lain. Otetikasi biasanya dilakukan saat user login lalu memasukkan nama, password, dan info lainnya. Tidak seperti otorisasi, otentikasi dapat dilihat dan biasanya sebagiannya dapat diubah oleh pengguna. Pada lab kali ini, otentikasi pertama didukung oleh pada form login beserta htmlnya. Pada halaman itu, kita mendapatkan username dan password user. Lalu  otorisasi utamanya terdapat pada fungsi WebSecurityConfig bernama configAuthentication. Disitu, data yang telah dimasukan user pada login akan dicek. Berikut syntaxnya:
+
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
+    }
+
+* Otorisasi: Merupakan proses menentukan atau memverifikasi fitur atau resource apa saja yang dapat diakses pengguna dalam suatu sistem, atau dalam kata lain proses menentukan apakah user memiliki akses ke suatu resource. Otorisasi selalu dilakukan setelah autenthication, dan biasanya tidak dapat diubah karena telah diatur oleh pembuat sistem. Pada lab kali ini, autorisasi terdapat pada command .authorizeRequests() di method configure yang berada di file WebSecurityConfig
+
+**2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerja dan tujuannya.**
+
+> BCryptPasswordEncoder merupakan salah satu password encoder yang digunakan pada modul security di spring boot. BCryptPasswordEncoder bertujuan agar bisa dilakukan password encoding beserta password validate agar password aman dan tidak gampang diteras atau dilihat pihak selain user pemilik password tersebut. 
+
+> Cara kerjanya adalah menggunakan algoritma one-way encryption bernama BCrypt dengan stong hashing function. Setelah password dienkripsi dengan BCryptPasswordEncoder, password disimpan dalam database. Jika lupa password, maka password harus kembali di dienkripsi, dibuat, dan disimpan ulang. Jika disimpan 2 kali, maka setiap call akan menghasilkan hasil enkripsi yang berbeda-beda. Password yang telah di hashing tidak bisa di decrypt kembali.
+
+**3. Apakah penyimpanan password sebaiknya menggunakan encryption atau hashing? Mengapa demikian?**
+> Penyimpanan password lebih baik menggunakan hashing dibandingkan dengan encryption. Alasannya adalah karena hashing adalah one-way function, dimana jika user telah menghashing password, maka siapapun tidak mungkin bisa men-decrypt password untuk mendapatkan nilai awalnya lagi. Alasan lain dari segi keamanannya adalah, bahkan jika ada hacker yang mendapatkan kata sandi hash, hacker tersebut tidak dapat memasukkan password lalu login sebagai korban. Sebaliknya, sangat tidak disarankan menggunakan enkripsi karena enkripsi merupakan two-way function, jadi bisa saja password yang telah dienkripsi kembali dilakukan dekripsi untuk mendapat plain text value (nilai aslinya).
+
+**4. Jelaskan secara singkat apa itu UUID beserta penggunaannya!**
+> Universally unique identifier atau yang biasa disingkat UUID adalah standart identikasi informasi di sistem komputer yang terdiri dari 128-bit angka. UUID terdiri dari 16 oktet yang direpresentasikan sebagai 32 basis-16 karakter. UUID biasanya digunakan dalam mengidentifikasi informasi yang perlu dibuat unik dalam suatu sistem atau jaringan. UUID juga bisa digunaan sebagai associative keys pada database, serta bisa membuat mengidentifikasi perangkat keras fisik dalam suatu organisasi.
+
+**5. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java**
+> Pada lab ini, UserDetailsServiceImpl.java berguna untuk membangun otentikasi dan otorisasi dari user. File UserDetailsServiceImpl.java sangat berguna dalam pengaplikasian security pada spring karena terdapat class yang meng-extend  modul UserServiceDetail dari spring security. Pada class ini setelah detail user dikirimkan melalui otentikasi, data yang user masukan akan membuat sistem mengecek apakah user ini bisa masuk ke sistem, serta resource atau action apa saja yang bisa dilihat dan dilakukan. Kalau userserviceimpl itu lebih berperan kepada fungsi apa saja semua di user secara general tanpa melihat role atau apakah user tersebut terotorisasi/terotentikasi seperti bisa menambah user, enkripsi password user, dan mendapat list user. 
+
 
 ## Tutorial 5
 ### Pertanyaan

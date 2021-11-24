@@ -1,42 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
     <title> Home </title>
+
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<!--    <a class="navbar-brand font-weight-bold text-warning" href="#">21Cineplux</a>-->
-    <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-    >
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-            <a class="nav-item nav-link active text-secondary" th:href="@{/>}">
-                Home<span class="sr-only">(current)</span>
-            </a>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" th:action="@{/bioskop/view}" method="GET">
-            <input class="form-control mr-sm-2" type="search"
-                   name="noBioskop" placeholder="No Bioskop" aria-label="Search">
-            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
+<button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+>
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+        <a class="nav-item nav-link active text-secondary" th:href="@{/>}">
+            Home<span class="sr-only">(current)</span>
+        </a>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" th:action="@{/bioskop/view}" method="GET">
+        <input class="form-control mr-sm-2" type="search"
+               name="noBioskop" placeholder="No Bioskop" aria-label="Search">
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div>
 </nav>
 <div class="d-flex justify-content-center">
     <div class="4">
+        <h2 style="text-align: center" th:text=" 'Hello ' + ${#httpServletRequest.remoteUser} + ' !'"></h2>
         <h2>Selamat datang di 21cineplux</h2>
         <div class="d-flex justify-content-center">
             <a th:href="@{/bioskop/viewall}" class="mx-2 btn btn-warning">Lihat semua bioskop</a>
@@ -45,6 +46,15 @@
         <div class="my-3 d-flex justify-content-center">
             <a th:href="@{/film/viewall}" class="mx-2 btn btn-warning">Lihat semua film</a>
             <a th:href="@{/film/add}" class="mx-2 btn btn-outline-warning">Tambah film</a>
+        </div>
+        <div sec:authorize="hasAuthority('ADMIN')" class="my-3 d-flex justify-content-center">
+            <a th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambah User Baru</a>
+        </div>
+        <div sec:authorize="hasAuthority('ADMIN')" class="my-3 d-flex justify-content-center">
+            <a th:href="@{/user/viewall}" class="mx-2 btn btn-outline-warning">Lihat Semua User</a>
+        </div>
+        <div class="my-3 d-flex justify-content-center">
+            <a th:href="@{/user/update-password}" class="mx-2 btn btn-outline-warning">Update Password</a>
         </div>
     </div>
 </div>
