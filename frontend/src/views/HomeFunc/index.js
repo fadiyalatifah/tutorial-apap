@@ -36,14 +36,34 @@ function App() {
         const newItems = [...cartItems];
         const newItem = { ...item };
         const targetInd = newItems.findIndex((it) => it.id === newItem.id);
+        const itemBalance = balance;
         if (targetInd < 0) {
-            newItem.inCart = true;
-            newItems.push(newItem);
-
-            updateShopItem(newItem, true)
+            if(itemBalance < newItem.price) {
+                alert("Balance not sufficient!")
+            } else {
+                newItem.inCart = true;
+                newItems.push(newItem);
+                updateShopItem(newItem, true)
+                setBalance(itemBalance - newItem.price)
+            }
         }
         setCartItems(newItems);
     }
+
+    function handleDeleteItemFromCart(item) {
+        const newItems = [...cartItems];
+        const newItem = { ...item };
+        const targetInd = newItems.findIndex((it) => it.id === newItem.id);
+        const itemBalance = balance;
+        if (targetInd >= 0) {
+            newItem.inCart = false;
+            newItems.splice(targetInd, 1)
+            updateShopItem(newItem, false)
+            setBalance(itemBalance + newItem.price)
+        }
+        setCartItems(newItems);
+    }    
+
     return (
         <div className="container-fluid">
             <h1 className="text-center mt-3 mb-0">Mini Commerce</h1>
@@ -68,7 +88,7 @@ function App() {
                             <List
                                 title="My Cart"
                                 items={cartItems}
-                                onItemClick={() => { }}
+                                onItemClick={handleDeleteItemFromCart}
                             ></List>
                         </div>
                     ) : <div className="col-sm">
