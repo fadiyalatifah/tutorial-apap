@@ -17,6 +17,7 @@ export default class Home extends React.Component {
             balance: 120,
         };
     }
+
     render() {
         return (
             <div className="container-fluid">
@@ -64,15 +65,15 @@ export default class Home extends React.Component {
         const targetInd = newItems.findIndex((it) => it.id === newItem.id);
         const itemBalance = this.state.balance;
         if (targetInd < 0) {
-            if(itemBalance < newItem.price) {
+            if (itemBalance < newItem.price) {
                 alert("Balance not sufficient!")
             } else {
                 newItem.inCart = true;
                 newItems.push(newItem)
                 this.updateShopItem(newItem, true)
-                this.setState({balance: itemBalance - newItem.price})
+                this.setState({ balance: itemBalance - newItem.price })
             }
-            
+
         }
         this.setState({ cartItems: newItems });
     };
@@ -98,13 +99,13 @@ export default class Home extends React.Component {
             newItem.inCart = false;
             newItems.splice(targetInd, 1)
             this.updateShopItem(newItem, false)
-            this.setState({balance: itemBalance + newItem.price})
+            this.setState({ balance: itemBalance + newItem.price })
         }
         this.setState({ cartItems: newItems });
     };
 
 
-   
+
 
 
 }

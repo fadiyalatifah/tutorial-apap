@@ -38,7 +38,7 @@ function App() {
         const targetInd = newItems.findIndex((it) => it.id === newItem.id);
         const itemBalance = balance;
         if (targetInd < 0) {
-            if(itemBalance < newItem.price) {
+            if (itemBalance < newItem.price) {
                 alert("Balance not sufficient!")
             } else {
                 newItem.inCart = true;
@@ -62,7 +62,7 @@ function App() {
             setBalance(itemBalance + newItem.price)
         }
         setCartItems(newItems);
-    }    
+    }
 
     return (
         <div className="container-fluid">
