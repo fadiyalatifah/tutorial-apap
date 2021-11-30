@@ -39,6 +39,7 @@ export default class Home extends React.Component {
                     <div className="row mt-3">
                         {!this.state.cartHidden ? (
                             <div className="col-sm">
+                                <button onClick={this.deleteAllCart} items={this.state.cartItems} >Clear all</button>
                                 <List
                                     title="My Cart"
                                     items={this.state.cartItems}
@@ -103,6 +104,19 @@ export default class Home extends React.Component {
         }
         this.setState({ cartItems: newItems });
     };
+
+    deleteAllCart = (item) => {
+        let newBalance = this.state.balance;
+        this.state.cartItems.forEach(element => {
+            newBalance = newBalance + element.price;
+            this.updateShopItem(element, false)
+            }
+        );
+        this.setState({balance: newBalance})
+        this.setState( {cartItems: []})
+    };
+
+
 
 
 
