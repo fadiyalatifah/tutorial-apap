@@ -6,9 +6,11 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { IconButton } from "@material-ui/core";
 
 const Item = (props) => {
-    const { id, title, price, description, category, quantity, handleEdit, handleDelete } = props;
+    const { id, title, price, description, category, quantity, handleEdit, handleDelete, inCart, onChange } = props;
     // const { item, onChange, isShopList } = props;
 
+    const handleChange = () =>
+    !!onChange && onChange({ ...props, inCart: !inCart });
     return (
         <div className={classes.item}>
             <h3>{`ID ${id}`}</h3>

@@ -8,12 +8,10 @@ import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ViewStreamIcon from "@mui/icons-material/ViewStream";
 import { Fab } from "@material-ui/core";
-import List from "../../List";
 import { Link } from "react-router-dom";
-import Cart from "../cart";
 
 
-class ItemList extends Component {
+class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,13 +30,13 @@ class ItemList extends Component {
             cartItems: [],
             cartHidden: true,
         };
-        this.handleAddItem = this.handleAddItem.bind(this);
-        this.handleCancel = this.handleCancel.bind(this);
-        this.handleClickLoading = this.handleClickLoading.bind(this);
-        this.handleChangeField = this.handleChangeField.bind(this);
-        this.handleSubmitItem = this.handleSubmitItem.bind(this);
-        this.handleSubmitEditItem = this.handleSubmitEditItem.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
+        // this.handleAddItem = this.handleAddItem.bind(this);
+        // this.handleCancel = this.handleCancel.bind(this);
+        // this.handleClickLoading = this.handleClickLoading.bind(this);
+        // this.handleChangeField = this.handleChangeField.bind(this);
+        // this.handleSubmitItem = this.handleSubmitItem.bind(this);
+        // this.handleSubmitEditItem = this.handleSubmitEditItem.bind(this);
+        // this.handleSearch = this.handleSearch.bind(this);
 
     }
     componentDidMount() {
@@ -177,101 +175,29 @@ class ItemList extends Component {
 
     render() {
         return (
-            <div className={classes.itemList}>
+            <div className={classes.cart}>
                 <h1 className={classes.title}>
-                    All Items
+                    CART ITEMS
                 </h1>
                 <div style={{ position: "fixed", top: 25, right: 25 }}>
-                    <Link to="/cart">
-                        <Fab variant="extended" >
-
-                            <Badge color="secondary" badgeContent={this.state.cartItems.length}>
-                                <ShoppingCartIcon />
-                            </Badge>
-
-                        </Fab>
-                    </Link>
+                <Link to="/">
+                    <Fab variant="extended" >
+                        
+                            <ViewStreamIcon />
+                    </Fab>
+                </Link>
                 </div>
 
 
+                <div className="col-sm">
+                    <Item
+                        title="My Cart"
+                        items={this.state.cartItems}
+                        onItemClick={this.handleDeleteItemFromCart}
+                    ></Item>
+                </div>
 
-                <><Button action={this.handleAddItem}>
-                    Add Item
-                </Button><div>
-                        <input
-                            type="text"
-                            name="search"
-                            placeholder="Cari"
-                            value={this.state.search}
-                            onChange={this.handleSearch.bind(this)} />
-                    </div><div>
-                        {this.state.items.map((item) => (
-                            <Item
-                                key={item.id}
-                                id={item.id}
-                                title={item.title}
-                                price={item.price}
-                                description={item.description}
-                                category={item.category}
-                                quantity={item.quantity}
-                                handleEdit={() => this.handleEditItem(item)} />
-                        ))}
-                    </div>
 
-                    <Modal
-                        show={this.state.isCreate || this.state.isEdit}
-                        handleCloseModal={this.handleCancel}
-                        modalTitle={this.state.isCreate
-                            ? "Add Item"
-                            : `Edit Item ID ${this.state.id}`}
-                    >
-                        <form>
-                            <input
-                                className={classes.textField}
-                                type="text"
-                                placeholder="Nama Item"
-                                name="title"
-                                value={this.state.title}
-                                onChange={this.handleChangeField} />
-                            <input
-                                className={classes.textField}
-                                type="number"
-                                placeholder="Harga"
-                                name="price"
-                                value={this.state.price}
-                                onChange={this.handleChangeField} />
-                            <textarea
-                                className={classes.textField}
-                                placeholder="Deskripsi"
-                                name="description"
-                                rows="4"
-                                value={this.state.description}
-                                onChange={this.handleChangeField} />
-                            <input
-                                className={classes.textField}
-                                type="text"
-                                placeholder="Kategori"
-                                name="category"
-                                value={this.state.category}
-                                onChange={this.handleChangeField} />
-                            <input
-                                className={classes.textField}
-                                type="number"
-                                placeholder="qty"
-                                value={this.state.quantity}
-                                name="quantity"
-                                onChange={this.handleChangeField} />
-                            <Button action={this.state.isCreate
-                                ? this.handleSubmitItem
-                                : this.handleSubmitEditItem}
-                            >
-                                Create
-                            </Button>
-                            <Button action={this.handleCancel}>
-                                Cancel
-                            </Button>
-                        </form>
-                    </Modal></>
 
 
             </div>
@@ -280,4 +206,4 @@ class ItemList extends Component {
 
 
 }
-export default ItemList;
+export default Cart;

@@ -22,11 +22,32 @@ hal ini dilakukan karena ketika sehabis post, akan ada dipanggil fungsi handleca
             })
 
 **2. Jelaskan fungsi dari async dan await!**
-* async : 
-* await : 
+* async : Merupakan method untuk membuat code asynchronous.  Fungsi ini dapat mentrigger penggunaan satu atau lebih await didalamnya. Fungsi async akan mengembalikan promise serta mengandung objek non-promise didalamnya.
+* await : Merupakan method yang berguna untuk menunda proses eksekusi hingga proses async selesai. Jika fungsi await sudah selesai, maka fungsi async akan kembali dilanjutkan. 
+
+Contohnya untuk fungsi handleSubmitItem, terdapat fungsi await APIConfig.post("/item", data). Jadi proses akan berhenti sebentar ketika menjalankan APIConfig.post. Jika sudah berhaisl post, baru fungsi asyncnya dilanjutkan
 
 **3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 9 pada Component Lifecycle pada pertanyaan ini.** 
+1. Buka file index.js di folder ItemList, tambahkan beberapa kode berikut
+![image](https://user-images.githubusercontent.com/81474184/144276217-a4e297ea-00b3-4636-9298-7ae83a3b2873.png)
 
+2. Buka terminal / command line, pindah ke folder frontend-minicommerce, lalu jalankan npm start.
+<img width="668" alt="image" src="https://user-images.githubusercontent.com/81474184/144276368-36423f56-275b-4eb4-8455-e443fd1f4aac.png">
+
+3. Buka browser Anda (jika tidak terbuka secara otomatis), lalu masukkan url http://localhost:3000/.Buka inspect element, kemudian arahkan ke tab console.
+![image](https://user-images.githubusercontent.com/81474184/144276523-ac8bbe1f-01c0-4cc0-8c44-037e56c2db10.png)
+
+6. Tambahkan isLoading pada state pada komponen ItemList.
+![image](https://user-images.githubusercontent.com/81474184/144276653-cc613420-bc7e-47b6-85f5-f963b5cb44ee.png)
+
+7.Tambahkan sebuah handler dan button untuk mengubah isLoading yang ada pada state
+![image](https://user-images.githubusercontent.com/81474184/144277018-cf548160-1a36-4934-8602-d9aaacfe7b1f.png)
+
+8. Buka browser dan akan muncul sebuah button baru sesuai spesifikasi
+![image](https://user-images.githubusercontent.com/81474184/144277143-3d558ce0-770d-4e5f-93dc-0dfb7c63a6ce.png)
+
+9. shouldComponentUpdate() kini hadir disana dan terlihat bahwa value dari isLoading berubah setiap di klik.
+![image](https://user-images.githubusercontent.com/81474184/144277209-9fbf4400-06a2-4608-86a5-dff870068cab.png)
 
 **4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount. Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.**
 * componentDidMount: 
