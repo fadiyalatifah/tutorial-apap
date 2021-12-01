@@ -25,6 +25,7 @@ class ItemList extends Component {
         this.handleClickLoading = this.handleClickLoading.bind(this);
         this.handleChangeField = this.handleChangeField.bind(this);
         this.handleSubmitItem = this.handleSubmitItem.bind(this);
+        this.handleSubmitEditItem = this.handleSubmitEditItem.bind(this);
     }
     componentDidMount() {
         this.loadData();
