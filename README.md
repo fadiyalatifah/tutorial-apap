@@ -4,6 +4,21 @@
 
 ## Tutorial 7
 ### Pertanyaan
+**1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?**
+
+
+**2. Jelaskan fungsi dari async dan await!**
+async
+await
+
+**3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 9 pada Component Lifecycle pada pertanyaan ini.** 
+
+
+**4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount. Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.**
+
+
+## Tutorial 7
+### Pertanyaan
 **1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan**
 * Latihan 1 (Menghapus my cart) = 
 ![image](https://user-images.githubusercontent.com/81474184/143247247-c9032217-69ce-40a6-8e13-4025bdf9f502.png)
