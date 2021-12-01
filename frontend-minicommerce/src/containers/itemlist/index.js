@@ -4,6 +4,12 @@ import classes from "./styles.module.css";
 import APIConfig from "../../api/APIConfig.js";
 import Button from "../../components/button";
 import Modal from "../../components/modal";
+import Badge from "@material-ui/core/Badge";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ViewStreamIcon from "@mui/icons-material/ViewStream";
+import { Fab } from "@material-ui/core";
+import List from "../../List";
+
 
 class ItemList extends Component {
     constructor(props) {
@@ -19,7 +25,10 @@ class ItemList extends Component {
             description: "",
             category: "",
             quantity: 0,
-            search: ""
+            search: "",
+
+            cartItems: [],
+            cartHidden: true,
         };
         this.handleAddItem = this.handleAddItem.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
@@ -138,6 +147,29 @@ class ItemList extends Component {
         }
         this.handleCancel(event);
     }
+    handleToggle = () => {
+        const cartHidden = this.state.cartHidden;
+        this.setState({ cartHidden: !cartHidden });
+    };
+
+    handleAddItemToCart = (item) => {
+        const newItems = [...this.state.cartItems];
+        const newItem = { ...item };
+        const targetInd = newItems.findIndex((it) => it.id === newItem.id);
+        if (targetInd < 0) {
+                newItem.inCart = true;
+                newItems.push(newItem)
+                this.updateShopItem(newItem, true)
+        }
+        this.setState({ cartItems: newItems });
+    };
+
+    updateShopItem = (item, inCart) => {
+        const tempShopItems = this.state.shopItems;
+        const targetInd = tempShopItems.findIndex((it) => it.id === item.id);
+        tempShopItems[targetInd].inCart = inCart;
+        this.setState({ shopItems: tempShopItems });
+    }
 
     render() {
         return (
@@ -145,91 +177,105 @@ class ItemList extends Component {
                 <h1 className={classes.title}>
                     All Items
                 </h1>
-                <Button action={this.handleAddItem}>
-                    Add Item
-                </Button>
-                <div>
-                    <input
-                        type="text"
-                        name="search"
-                        placeholder="Cari"
-                        value={this.state.search}
-                        onChange={this.handleSearch.bind(this)}
-                    />
+                <div style={{ position: "fixed", top: 25, right: 25 }}>
+                    <Fab variant="extended" onClick={this.handleToggle}>
+                        {this.state.cartHidden ?
+                            <Badge color="secondary" badgeContent={this.state.cartItems.length}>
+                                <ShoppingCartIcon />
+                            </Badge>
+                            : <ViewStreamIcon />}
+                    </Fab>
                 </div>
-                <div>
-                    {this.state.items.map((item) => (
-                        <Item
-                            key={item.id}
-                            id={item.id}
-                            title={item.title}
-                            price={item.price}
-                            description={item.description}
-                            category={item.category}
-                            quantity={item.quantity}
-                            handleEdit={() => this.handleEditItem(item)}
-                        />
-                    ))}
-                </div>
-                <Modal
-                    show={this.state.isCreate || this.state.isEdit}
-                    handleCloseModal={this.handleCancel}
-                    modalTitle={this.state.isCreate
-                        ? "Add Item"
-                        : `Edit Item ID ${this.state.id}`}
-                >
-                    <form>
-                        <input
-                            className={classes.textField}
-                            type="text"
-                            placeholder="Nama Item"
-                            name="title"
-                            value={this.state.title}
-                            onChange={this.handleChangeField}
-                        />
-                        <input
-                            className={classes.textField}
-                            type="number"
-                            placeholder="Harga"
-                            name="price"
-                            value={this.state.price}
-                            onChange={this.handleChangeField}
-                        />
-                        <textarea
-                            className={classes.textField}
-                            placeholder="Deskripsi"
-                            name="description"
-                            rows="4"
-                            value={this.state.description}
-                            onChange={this.handleChangeField}
-                        />
-                        <input
-                            className={classes.textField}
-                            type="text"
-                            placeholder="Kategori"
-                            name="category"
-                            value={this.state.category}
-                            onChange={this.handleChangeField}
-                        />
-                        <input
-                            className={classes.textField}
-                            type="number"
-                            placeholder="qty"
-                            value={this.state.quantity}
-                            name="quantity"
-                            onChange={this.handleChangeField}
-                        />
-                        <Button action={this.state.isCreate
-                            ? this.handleSubmitItem
-                            : this.handleSubmitEditItem}
+
+                {!this.state.cartHidden ? (
+                    <div className="col-sm">
+                        <List
+                            title="My Cart"
+                            items={this.state.cartItems}
+                            onItemClick={this.handleDeleteItemFromCart}
+                        ></List>
+                    </div>
+                ) :
+
+                    <><Button action={this.handleAddItem}>
+                        Add Item
+                    </Button><div>
+                            <input
+                                type="text"
+                                name="search"
+                                placeholder="Cari"
+                                value={this.state.search}
+                                onChange={this.handleSearch.bind(this)} />
+                        </div><div>
+                            {this.state.items.map((item) => (
+                                <Item
+                                    key={item.id}
+                                    id={item.id}
+                                    title={item.title}
+                                    price={item.price}
+                                    description={item.description}
+                                    category={item.category}
+                                    quantity={item.quantity}
+                                    handleEdit={() => this.handleEditItem(item)} />
+                            ))}
+                        </div>
+                        
+                        <Modal
+                            show={this.state.isCreate || this.state.isEdit}
+                            handleCloseModal={this.handleCancel}
+                            modalTitle={this.state.isCreate
+                                ? "Add Item"
+                                : `Edit Item ID ${this.state.id}`}
                         >
-                            Create
-                        </Button>
-                        <Button action={this.handleCancel}>
-                            Cancel
-                        </Button>
-                    </form>
-                </Modal>
+                            <form>
+                                <input
+                                    className={classes.textField}
+                                    type="text"
+                                    placeholder="Nama Item"
+                                    name="title"
+                                    value={this.state.title}
+                                    onChange={this.handleChangeField} />
+                                <input
+                                    className={classes.textField}
+                                    type="number"
+                                    placeholder="Harga"
+                                    name="price"
+                                    value={this.state.price}
+                                    onChange={this.handleChangeField} />
+                                <textarea
+                                    className={classes.textField}
+                                    placeholder="Deskripsi"
+                                    name="description"
+                                    rows="4"
+                                    value={this.state.description}
+                                    onChange={this.handleChangeField} />
+                                <input
+                                    className={classes.textField}
+                                    type="text"
+                                    placeholder="Kategori"
+                                    name="category"
+                                    value={this.state.category}
+                                    onChange={this.handleChangeField} />
+                                <input
+                                    className={classes.textField}
+                                    type="number"
+                                    placeholder="qty"
+                                    value={this.state.quantity}
+                                    name="quantity"
+                                    onChange={this.handleChangeField} />
+                                <Button action={this.state.isCreate
+                                    ? this.handleSubmitItem
+                                    : this.handleSubmitEditItem}
+                                >
+                                    Create
+                                </Button>
+                                <Button action={this.handleCancel}>
+                                    Cancel
+                                </Button>
+                            </form>
+                        </Modal></>
+                }
+
             </div>
         );
     }
