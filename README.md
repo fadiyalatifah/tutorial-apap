@@ -1,6 +1,44 @@
 # Tutorial APAP
 ## Authors
 * **Fadiya Latifah** - *1906399442* - *C*
+
+## Tutorial 7
+### Pertanyaan
+**1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan**
+* Latihan 1 (Menghapus my cart) = 
+![image](https://user-images.githubusercontent.com/81474184/143247247-c9032217-69ce-40a6-8e13-4025bdf9f502.png)
+![image](https://user-images.githubusercontent.com/81474184/143247413-8b5d8038-b5c7-434a-ab8e-6eedb2fb4982.png)
+Untuk menghapus my cart, saya membuat suatu function baru bernama handleDeleteFromCart. Utamanya fungsi yang dijalankan cukup mirip dengan handleAddItemToCart. Namun saya mengubah targetInd >= 0 karena kita hanya bisa menghapus jika cart  barang tersebut telah di-checkout. Lalu saya menggunakan method splice(targetInd, 1) untuk menghapus 1 box item yang telah diapus di targetInd. Lalu untuk newItem.inCart dan parameter update menjadi false karena kita ingin membuat item yang nantinya akan dihapus menjadi terdeteksi tidak ada di cart. Setelah membuat function, saya menambahkan action onclick this.handleDeleteItemFromCart jika icon hapus di-click.
+
+* Latihan 2 (Mengubah balance) =
+![image](https://user-images.githubusercontent.com/81474184/143247927-b2575d2e-290d-4dd9-bc05-63d2ea15141b.png)
+![image](https://user-images.githubusercontent.com/81474184/143247247-c9032217-69ce-40a6-8e13-4025bdf9f502.png)
+Untuk mengubah balance, saya mengubah fungsi ketika menampah atau menghapus item dari dan ke cart (handleAddItemToCart & handleDeleteItemFromCart). Pertama, kita harus mendapatkan state balance terakhir dengan memintahkan valuenya ke variabel itemBalance. Lalu setiap menambahkan barang ke cart, maka balance akan dikurangi dengan harga barang dengan mengubah state balance (this.setState({ balance: itemBalance - newItem.price })). Sedangkan setiap menghapus barang dari cart, maka balance akan ditambah dengan harga barang dengan mengubah state balance this.setState({ balance: itemBalance + newItem.price })
+
+* Latihan 3 (cek sisa balance)=
+![image](https://user-images.githubusercontent.com/81474184/143248124-bf1aeed7-0228-405f-bc1a-082df041c882.png)
+Untuk menambahkan constrain tidak boleh menambahkan item ketika balance kurang, saya mengecek itemBalance di fungsi handleAddItemToCart. Jika harga barang baru yang mau di pindahkan ke cart itu kurang dari saldo yang dimiliki, maka program akan mengeluarkan alert bahwa saldo tidak mencukupi.
+
+
+**2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?**
+* State = Merupakan komponen yang bisa dimodifikasi secara asynchronous menggunakan fungsi setStates. Pada lab ini contohnya, di awal akan didefinisikan this.state untuk mengetahui apa saja atribut state pada constructor. State pada kasus ini adalah shopItems: listItems, cartItems: [], cartHidden: true, balance: 120. Kita bisa mengubah tampilan list item yang sudah dimasukkan ke keranjang menggunakan this.setState({ cartItems: newItems }) sehingga state cartItems yang tadinya list kosong, sekarang berubah menjadi berisi barang yang ditambahkan.
+
+* Props = Merupakan komponen yang bersifat read-only, alias tidak dapat diubah. Props berbentuk parameter dari sebuah function, contohnya props dari item yang di-syntaxkan seperti export default function Item(props). Props digunakan untuk komunikasi data component dari parent ke child. Contohnya pada class home, props merupakan props dari supernya.
+
+**3. Menurut kamu, apakah sebaiknya kita menggunakan component (e.g. List, Item) dalam React? sebutkan alasannya.**
+Menurut saya, penggunaan component seperti list dan item sangat berguna. Hal ini terjadi karena penggunaan komponen akan membuat code kita bisa digunakan berulang kali dengan memanggil tag-nya saja. Contohnya pada lab kali ini, di home terdapat pemanggilan List untuk menampilkan list item apa saja yang akan muncul di home. Dengan begitu setiap cards item pada file items.json bisa ditampilkan dan juga bisa mendapat handling yang sama untuk suatu action/event.
+
+**4. Apa perbedaan class component dan functional component?**
+* Class component = Mengacu kepada contoh di lab kali ini, didapatkan temuan bahwa class component memiliki state. hal ini terjadi karena syntax set dan this membuat state membutuhkan pengelompokan komponen dalam kelas-kelas tertentu. Komponen ini memiliki render yang mengembalikan HTML serta memiliki constructor.
+
+* Functional component = Functional component normalnya hanya menerima props sebagai argumen dan mengembalikan elemen React. Komponen ini tidak memiliki method render karena fungsinya hanya sebatas menerima data lalu menampilkannya dalam beberapa bentuk. Karena sifatnya itu, komponen ini biasanya lebih banyak digunakan untuk UI component. 
+
+
+**5. Dalam react, apakah perbedaan component dan element?**
+* Component = Merupakan class atau function yang menerima input react (bisa dlm bentuk props) dan juga mengembalikan elemen tree React. Dengan komponen, code kita bisa digunakan berulang kali dengan memanggil tag-nya saja. Komponen bisa terdiri dari banyak elemen.
+
+* Element = Merupakan representasi sebuah object dari DOM nodes yang menjelaskan apa yang muncul di layar. Elemen berisi plain old object, bukan elemen DOM yang asli. Element juga bisa mengandung element lain.
+
 ## Tutorial 6
 ### Pertanyaan
 **1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?**
