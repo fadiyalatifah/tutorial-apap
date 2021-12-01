@@ -5,17 +5,35 @@
 ## Tutorial 7
 ### Pertanyaan
 **1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?**
+Saat melakukan langkah ke 36, saya terlebih dahulu telah menghandle masalah tersebut sehingga ketika add item kedua kalinya, form sudah tidak berisi value dari item sebelumnya. Hal yang saya tambahkan dari code sebelumnya adalah beberapa binding serta melakukan setstate setiap post atau edit. Jadi selain handleclickloading dan handleadditem, saya menambahkan binding untuk 3 fungsi dengan code di bawah ini:
 
+> this.handleCancel = this.handleCancel.bind(this);
+this.handleChangeField = this.handleChangeField.bind(this);
+this.handleSubmitItem = this.handleSubmitItem.bind(this);
+
+hal ini dilakukan karena ketika sehabis post, akan ada dipanggil fungsi handlecancel lalu disitu akan diubah state nya menjadi kosong atau default semula. Kodenya sebagai berikut:
+
+>this.setState({
+                title: "",
+                price: 0,
+                description: "",
+                category: "",
+                quantity: 0
+            })
 
 **2. Jelaskan fungsi dari async dan await!**
-async
-await
+* async : 
+* await : 
 
 **3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 9 pada Component Lifecycle pada pertanyaan ini.** 
 
 
 **4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount. Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.**
-
+* componentDidMount: 
+* shouldComponentUpdate:
+* componentDidUpdate:
+* componentWillReceiveProps:
+* componentWillUnmount:
 
 ## Tutorial 7
 ### Pertanyaan

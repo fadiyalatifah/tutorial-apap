@@ -18,7 +18,8 @@ class ItemList extends Component {
             price: 0,
             description: "",
             category: "",
-            quantity: 0
+            quantity: 0,
+            search: ""
         };
         this.handleAddItem = this.handleAddItem.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
@@ -26,6 +27,8 @@ class ItemList extends Component {
         this.handleChangeField = this.handleChangeField.bind(this);
         this.handleSubmitItem = this.handleSubmitItem.bind(this);
         this.handleSubmitEditItem = this.handleSubmitEditItem.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+
     }
     componentDidMount() {
         this.loadData();
@@ -58,9 +61,24 @@ class ItemList extends Component {
         })
     }
 
+    handleSearch(event) {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+        this.filterData();
+    }
+
     async loadData() {
         try {
             const { data } = await APIConfig.get("/item");
+            this.setState({ items: data.result });
+        } catch (error) {
+            alert("Oops terjadi masalah pada server");
+            console.log(error);
+        }
+    }
+    async filterData() {
+        try {
+            const { data } = await APIConfig.get(`/item?title=${this.state.search}`);
             this.setState({ items: data.result });
         } catch (error) {
             alert("Oops terjadi masalah pada server");
@@ -92,6 +110,7 @@ class ItemList extends Component {
         }
         this.handleCancel(event);
     }
+
 
     async handleSubmitEditItem(event) {
         event.preventDefault();
@@ -130,6 +149,15 @@ class ItemList extends Component {
                     Add Item
                 </Button>
                 <div>
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Cari"
+                        value={this.state.search}
+                        onChange={this.handleSearch.bind(this)}
+                    />
+                </div>
+                <div>
                     {this.state.items.map((item) => (
                         <Item
                             key={item.id}
@@ -138,6 +166,7 @@ class ItemList extends Component {
                             price={item.price}
                             description={item.description}
                             category={item.category}
+                            quantity={item.quantity}
                             handleEdit={() => this.handleEditItem(item)}
                         />
                     ))}
@@ -186,8 +215,8 @@ class ItemList extends Component {
                             className={classes.textField}
                             type="number"
                             placeholder="qty"
-                            name="quantity"
                             value={this.state.quantity}
+                            name="quantity"
                             onChange={this.handleChangeField}
                         />
                         <Button action={this.state.isCreate
