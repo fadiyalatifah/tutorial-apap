@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import Item from "../../components/Item";
 import classes from "./styles.module.css";
 import APIConfig from "../../api/APIConfig.js";
-import Button from "../../components/button";
-import Modal from "../../components/modal";
-import Badge from "@material-ui/core/Badge";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ViewStreamIcon from "@mui/icons-material/ViewStream";
 import { Fab } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -68,12 +64,6 @@ class Cart extends Component {
             category: item.category,
             quantity: item.quantity
         })
-    }
-
-    handleSearch(event) {
-        const { name, value } = event.target;
-        this.setState({ [name]: value });
-        this.filterData();
     }
 
     async loadData() {
@@ -180,30 +170,21 @@ class Cart extends Component {
                     CART ITEMS
                 </h1>
                 <div style={{ position: "fixed", top: 25, right: 25 }}>
-                <Link to="/">
-                    <Fab variant="extended" >
-                        
+                    <Link to="/">
+                        <Fab variant="extended" >
+
                             <ViewStreamIcon />
-                    </Fab>
-                </Link>
+                        </Fab>
+                    </Link>
                 </div>
-
-
                 <div className="col-sm">
                     <Item
-                        title="My Cart"
+                        title= {this.state.title}
                         items={this.state.cartItems}
-                        onItemClick={this.handleDeleteItemFromCart}
                     ></Item>
                 </div>
-
-
-
-
             </div>
         );
     }
-
-
 }
 export default Cart;

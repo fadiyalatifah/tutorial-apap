@@ -6,9 +6,7 @@ import Button from "../../components/button";
 import Modal from "../../components/modal";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import ViewStreamIcon from "@mui/icons-material/ViewStream";
 import { Fab } from "@material-ui/core";
-import List from "../../List";
 import { Link } from "react-router-dom";
 import Cart from "../cart";
 
@@ -192,8 +190,6 @@ class ItemList extends Component {
                         </Fab>
                     </Link>
                 </div>
-
-
 
                 <><Button action={this.handleAddItem}>
                     Add Item

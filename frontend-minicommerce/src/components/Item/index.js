@@ -2,7 +2,6 @@ import React from "react";
 import Button from "../button";
 import classes from "./styles.module.css";
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { IconButton } from "@material-ui/core";
 
 const Item = (props) => {
