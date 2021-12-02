@@ -2,6 +2,65 @@
 ## Authors
 * **Fadiya Latifah** - *1906399442* - *C*
 
+## Tutorial 8
+### Pertanyaan
+**1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?**
+Saat melakukan langkah ke 36, saya terlebih dahulu telah menghandle masalah tersebut sehingga ketika add item kedua kalinya, form sudah tidak berisi value dari item sebelumnya. Hal yang saya tambahkan dari code sebelumnya adalah beberapa binding serta melakukan setstate setiap post atau edit. Jadi selain handleclickloading dan handleadditem, saya menambahkan binding untuk 3 fungsi dengan code di bawah ini:
+
+> this.handleCancel = this.handleCancel.bind(this);
+this.handleChangeField = this.handleChangeField.bind(this);
+this.handleSubmitItem = this.handleSubmitItem.bind(this);
+
+hal ini dilakukan karena ketika sehabis post, akan ada dipanggil fungsi handlecancel dan ketika submit, semua atribut item akan diubah state nya menjadi kosong atau default semula. Kodenya sebagai berikut:
+
+>this.setState({
+                title: "",
+                price: 0,
+                description: "",
+                category: "",
+                quantity: 0
+            })
+
+**2. Jelaskan fungsi dari async dan await!**
+* async : Merupakan method untuk membuat code asynchronous.  Fungsi ini dapat mentrigger penggunaan satu atau lebih await didalamnya. Fungsi async akan mengembalikan promise serta mengandung objek non-promise didalamnya.
+* await : Merupakan method yang berguna untuk menunda proses eksekusi hingga proses async selesai. Jika fungsi await sudah selesai, maka baris fungsi async di bawah line await akan kembali dilanjutkan. 
+
+Contohnya untuk fungsi handleSubmitItem, terdapat fungsi await APIConfig.post("/item", data). Jadi proses akan berhenti sebentar ketika menjalankan APIConfig.post. Jika sudah berhaisl post, baru fungsi asyncnya dilanjutkan.
+
+**3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 9 pada Component Lifecycle pada pertanyaan ini.** 
+1. Buka file index.js di folder ItemList, tambahkan beberapa kode berikut
+![image](https://user-images.githubusercontent.com/81474184/144276217-a4e297ea-00b3-4636-9298-7ae83a3b2873.png)
+
+2. Buka terminal / command line, pindah ke folder frontend-minicommerce, lalu jalankan npm start.
+<img width="668" alt="image" src="https://user-images.githubusercontent.com/81474184/144276368-36423f56-275b-4eb4-8455-e443fd1f4aac.png">
+
+3. Buka browser Anda (jika tidak terbuka secara otomatis), lalu masukkan url http://localhost:3000/.Buka inspect element, kemudian arahkan ke tab console.
+![image](https://user-images.githubusercontent.com/81474184/144276523-ac8bbe1f-01c0-4cc0-8c44-037e56c2db10.png)
+
+6. Tambahkan isLoading pada state pada komponen ItemList.
+![image](https://user-images.githubusercontent.com/81474184/144276653-cc613420-bc7e-47b6-85f5-f963b5cb44ee.png)
+
+7.Tambahkan sebuah handler dan button untuk mengubah isLoading yang ada pada state
+![image](https://user-images.githubusercontent.com/81474184/144277018-cf548160-1a36-4934-8602-d9aaacfe7b1f.png)
+
+8. Buka browser dan akan muncul sebuah button baru sesuai spesifikasi
+![image](https://user-images.githubusercontent.com/81474184/144277143-3d558ce0-770d-4e5f-93dc-0dfb7c63a6ce.png)
+
+9. shouldComponentUpdate() kini hadir disana dan terlihat bahwa value dari isLoading berubah setiap di klik.
+![image](https://user-images.githubusercontent.com/81474184/144277209-9fbf4400-06a2-4608-86a5-dff870068cab.png)
+
+**4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount. Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.**
+* componentDidMount: Biasa dipakai serta dipanggil untuk menjalankan fungsi asynchronous setelah komponen render()/DOM ditampilkan. Fungsinya untuk me-load data. Use casenya itu ketika menampilkan list item serta menempatkan API call di komponen react saat pertama kali di-load.
+
+* shouldComponentUpdate: Method yang berguna agar component tidak perlu merender ulang di proses/pemanggilan selanjutnya jika memang tidak ada update. Jadi fungsi hanya akan dipanggil jika ada props/state yang berubah. Use casenya adalah ketika kita ingin pengoptimal kerja/responsiveness web dengan mencegah rendering ulang ketika bentuk layar diubah agar tidak menambah bug. 
+
+* componentDidUpdate: Method ini adalah method yang dipanggil setelah komponen kembali dirender, atau dipanggil setelah componentDidMount(). Method ini berguna untuk melakukan beberapa action saat state berubah. Use casenya adalah saat kita ingin memanggil API eksternal dengan syarat bahwa state terbaru sudah berubah.
+
+* componentWillReceiveProps: Merupakan method yang dipanggil ketika Metode ini dipanggil ketika props diteruskan ke instance component mengalami perubahan. Fungsi ini digunakan pada lifecycle fase updating ketika ingin membuat perubahan pada props tertentu agar memicu transisi state.
+
+* componentWillUnmount: Merupakan method yang biasanya dipanggil sesaat sebelum sebuat koponen dilepaskan (unmounted) lalu dihancurkan dari DOM. Method ini akan dipanggil selama lifecycle fase unmounting. Contoh use case yang biasa menggunakan method ini adalah ketika ingin membatalkan permintaan koneksi jaringan, membersihkan timers yang tidak valid, ataupun menghapus semua yang kita buat melalui componentDidMount.
+
+
 ## Tutorial 7
 ### Pertanyaan
 **1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan**
